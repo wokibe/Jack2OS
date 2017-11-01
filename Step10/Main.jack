@@ -1,0 +1,141 @@
+class Main {
+
+  function void main() {
+    var int err;
+
+    let err = Keyboard.readInt("Enter the number of the OS error to provoke: ");
+    if (err = 1) { do Main.err01(); }
+    else { if (err = 2) { do Main.err02(); }
+    else { if (err = 3) { do Main.err03(); }
+    else { if (err = 4) { do Main.err04(); }
+    else { if (err = 5) { do Main.err05(); }
+    else { if (err = 6) { do Main.err06(); }
+    else { if (err = 7) { do Main.err07(); }
+    else { if (err = 8) { do Main.err08(); }
+    else { if (err = 9) { do Main.err09(); }
+    else { if (err = 12) { do Main.err12(); }
+    else { if (err = 13) { do Main.err13(); }
+    else { if (err = 14) { do Main.err14(); }
+    else { if (err = 15) { do Main.err15(); }
+    else { if (err = 16) { do Main.err16(); }
+    else { if (err = 17) { do Main.err17(); }
+    else { if (err = 18) { do Main.err18(); }
+    else { if (err = 19) { do Main.err19(); }
+    else { if (err = 20) { do Main.err20(); }
+
+    else { do Output.printString("Unknown error"); }}}}}}}}}}}}}}}}}}
+    return;
+  }
+
+  function void err01() {
+    do Sys.wait(-1);
+    return;
+  }
+
+  function void err02() {
+    var Array a;
+    let a = Array.new(0);
+    return;
+  }
+
+  function void err03() {
+    var int x, y, z;
+    let x = 3;
+    let y = 0;
+    let z = x / y;
+    return;
+  }
+
+  function void err04() {
+    var int x;
+    let x = Math.sqrt(-2);
+    return;
+  }
+
+  function void err05() {
+    var Array a;
+    let a = Memory.alloc(-1);
+    return;
+  }
+
+  function void err06() {
+    var Array a;
+    let a = Array.new(16*1024);
+    return;
+  }
+
+  function void err07() {
+    do Screen.drawPixel(600, 300);
+    return;
+  }
+
+  function void err08() {
+    do Screen.drawLine(-1, -2, 100, 100);
+    return;
+  }
+
+  function void err09() {
+    do Screen.drawRectangle(-5, 20, 200, 400);
+    return;
+  }
+
+  function void err12() {
+    do Screen.drawCircle(100, 400, 10);
+    return;
+  }
+
+  function void err13() {
+    do Screen.drawCircle(100, 100, 200);
+    return;
+  }
+
+  function void err14() {
+    var String s;
+    let s = String.new(-3);
+    return;
+  }
+
+  function void err15() {
+    var String s;
+    var Char c;
+    let s = String.new(10);
+    let s = s.appendChar(65);
+    let c = s.charAt(5);
+    return;
+  }
+
+  function void err16() {
+    var String s;
+    let s = String.new(10);
+    let s = s.appendChar(65);
+    do s.setCharAt(5, 66);
+    return;
+  }
+
+  function void err17() {
+    var String s;
+    let s = "xyz";
+    let s = s.appendChar(67);
+    return;
+  }
+
+  function void err18() {
+    var String s;
+    let s = "";
+    do s.eraseLastChar();
+    return;
+  }
+
+  function void err19() {
+    var String s;
+    let s = String.new(3);
+    do s.setInt(1234);
+    return;
+  }
+
+  function void err20() {
+    do Output.moveCursor(70, 12);
+    return;
+  }
+
+}

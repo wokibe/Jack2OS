@@ -1,0 +1,397 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step05/./vm/Main.vm generated at 2017-10-28 21:08
+// class Main
+// #########################################################
+// function void main
+function Main.main 3
+// ## LOCAL         0 s            String  
+// ## LOCAL         1 before       int     
+// ## LOCAL         2 after        int     
+//   15     let before = Memory.getFreeListAddr();
+// remote function call
+call Memory.getFreeListAddr 0
+pop local 1
+//   17   	let s = String.new(1);
+// remote function call
+push constant 1
+call String.new 1
+pop local 0
+//   18   	do s.appendChar(String.doubleQuote());
+// remote method call
+// set arg 0 with remote object
+push local 0
+// remote function call
+call String.doubleQuote 0
+call String.appendChar 2
+// discard the void return
+pop temp 0
+//   20     do Output.moveCursor(0, 63);
+// remote function call
+push constant 0
+push constant 63
+call Output.moveCursor 2
+// discard the void return
+pop temp 0
+//   21     do Output.printChar(66);
+// remote function call
+push constant 66
+call Output.printChar 1
+// discard the void return
+pop temp 0
+//   22     do Output.moveCursor(22, 0);
+// remote function call
+push constant 22
+push constant 0
+call Output.moveCursor 2
+// discard the void return
+pop temp 0
+//   23     do Output.printChar(67);
+// remote function call
+push constant 67
+call Output.printChar 1
+// discard the void return
+pop temp 0
+//   24     do Output.moveCursor(22, 63);
+// remote function call
+push constant 22
+push constant 63
+call Output.moveCursor 2
+// discard the void return
+pop temp 0
+//   25     do Output.printChar(68);
+// remote function call
+push constant 68
+call Output.printChar 1
+// discard the void return
+pop temp 0
+//   26     do Output.printChar(65);
+// remote function call
+push constant 65
+call Output.printChar 1
+// discard the void return
+pop temp 0
+//   28     do Output.moveCursor(2, 0);
+// remote function call
+push constant 2
+push constant 0
+call Output.moveCursor 2
+// discard the void return
+pop temp 0
+//   29     do Output.printDropString("0123456789");
+// remote function call
+push constant 10
+call String.new 1
+push constant 48
+call String.appendChar 2
+push constant 49
+call String.appendChar 2
+push constant 50
+call String.appendChar 2
+push constant 51
+call String.appendChar 2
+push constant 52
+call String.appendChar 2
+push constant 53
+call String.appendChar 2
+push constant 54
+call String.appendChar 2
+push constant 55
+call String.appendChar 2
+push constant 56
+call String.appendChar 2
+push constant 57
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   30     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   32     do Output.printDropString("ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz");
+// remote function call
+push constant 53
+call String.new 1
+push constant 65
+call String.appendChar 2
+push constant 66
+call String.appendChar 2
+push constant 67
+call String.appendChar 2
+push constant 68
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 70
+call String.appendChar 2
+push constant 71
+call String.appendChar 2
+push constant 72
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 74
+call String.appendChar 2
+push constant 75
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+push constant 77
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+push constant 79
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 81
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 84
+call String.appendChar 2
+push constant 85
+call String.appendChar 2
+push constant 86
+call String.appendChar 2
+push constant 87
+call String.appendChar 2
+push constant 88
+call String.appendChar 2
+push constant 89
+call String.appendChar 2
+push constant 90
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 98
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 106
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 113
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 119
+call String.appendChar 2
+push constant 120
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 122
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   33     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   35     do Output.printDropString("!#$%&'()*+,-./:;<=>?@[\]^_`{|}~");
+// remote function call
+push constant 31
+call String.new 1
+push constant 33
+call String.appendChar 2
+push constant 35
+call String.appendChar 2
+push constant 36
+call String.appendChar 2
+push constant 37
+call String.appendChar 2
+push constant 38
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 40
+call String.appendChar 2
+push constant 41
+call String.appendChar 2
+push constant 42
+call String.appendChar 2
+push constant 43
+call String.appendChar 2
+push constant 44
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 46
+call String.appendChar 2
+push constant 47
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 59
+call String.appendChar 2
+push constant 60
+call String.appendChar 2
+push constant 61
+call String.appendChar 2
+push constant 62
+call String.appendChar 2
+push constant 63
+call String.appendChar 2
+push constant 64
+call String.appendChar 2
+push constant 91
+call String.appendChar 2
+push constant 92
+call String.appendChar 2
+push constant 93
+call String.appendChar 2
+push constant 94
+call String.appendChar 2
+push constant 95
+call String.appendChar 2
+push constant 96
+call String.appendChar 2
+push constant 123
+call String.appendChar 2
+push constant 124
+call String.appendChar 2
+push constant 125
+call String.appendChar 2
+push constant 126
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   36     do Output.printString(s);
+// remote function call
+push local 0
+call Output.printString 1
+// discard the void return
+pop temp 0
+//   37     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   39     do Output.printInt(-12345);
+// remote function call
+push constant 12345
+neg
+call Output.printInt 1
+// discard the void return
+pop temp 0
+//   40     do Output.backSpace();
+// remote function call
+call Output.backSpace 0
+// discard the void return
+pop temp 0
+//   41     do Output.printInt(6789);
+// remote function call
+push constant 6789
+call Output.printInt 1
+// discard the void return
+pop temp 0
+//   43     do s.dispose();
+// remote method call
+// set arg 0 with remote object
+push local 0
+call String.dispose 1
+// discard the void return
+pop temp 0
+//   45     let after = Memory.getFreeListAddr();
+// remote function call
+call Memory.getFreeListAddr 0
+pop local 2
+//   46     if ((after - before) > 0) {
+push local 2
+push local 1
+sub
+push constant 0
+gt
+not
+if-goto I-ELS0
+//   47       do Output.printDropString("Memory leak: ");
+// remote function call
+push constant 13
+call String.new 1
+push constant 77
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   48       do Output.printInt(after - before);
+// remote function call
+push local 2
+push local 1
+sub
+call Output.printInt 1
+// discard the void return
+pop temp 0
+//   49       do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   52     return;
+push constant 0
+return

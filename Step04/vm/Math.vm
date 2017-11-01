@@ -1,0 +1,411 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step04/./vm/Math.vm generated at 2017-10-28 15:01
+// class Math
+// ## STATIC        0 bits         Array   
+// #########################################################
+// function int abs
+function Math.abs 0
+// ## ARGUMENT      0 x            int     
+//   11     if (x < 0) {
+push argument 0
+push constant 0
+lt
+not
+if-goto I-ELS0
+//   12       return -x;
+push argument 0
+neg
+return
+goto I-END0
+label I-ELS0
+//   15       return x;
+push argument 0
+return
+label I-END0
+// #########################################################
+// function int multiply
+function Math.multiply 3
+// ## LOCAL         0 sum          int     
+// ## LOCAL         1 j            int     
+// ## LOCAL         2 shiftedX     int     
+// ## ARGUMENT      0 x            int     
+// ## ARGUMENT      1 y            int     
+//   22     let sum = 0;
+push constant 0
+pop local 0
+//   23     let shiftedX = x;
+push argument 0
+pop local 2
+//   24     let j = 0;
+push constant 0
+pop local 1
+//   25     while (j < 16) {
+label W-EXP0
+push local 1
+push constant 16
+lt
+not
+if-goto W-END0
+//   26       if (Util.isBitSet(y, j)) {
+push argument 1
+push local 1
+call Util.isBitSet 2
+not
+if-goto I-ELS0
+//   27         let sum = sum + shiftedX;
+push local 0
+push local 2
+add
+pop local 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   29       let shiftedX = shiftedX + shiftedX;
+push local 2
+push local 2
+add
+pop local 2
+//   30       let j = j + 1;
+push local 1
+push constant 1
+add
+pop local 1
+goto W-EXP0
+label W-END0
+//   32     return sum;
+push local 0
+return
+// #########################################################
+// function int divide
+function Math.divide 1
+// ## LOCAL         0 neg          boolean 
+// ## ARGUMENT      0 x            int     
+// ## ARGUMENT      1 y            int     
+//   42     if (y = 0) { do Sys.error(3); }      // divide by zero
+push argument 1
+push constant 0
+eq
+not
+if-goto I-ELS0
+//   42     if (y = 0) { do Sys.error(3); }      // divide by zero
+push constant 3
+call Sys.error 1
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   44     let neg = ~((x < 0) = (y < 0));
+push argument 0
+push constant 0
+lt
+push argument 1
+push constant 0
+lt
+eq
+not
+pop local 0
+//   46     if (y = (32767 + 1)) {              // -32768
+push argument 1
+push constant 32767
+push constant 1
+add
+eq
+not
+if-goto I-ELS1
+//   47       if (x = y) { return 1; }
+push argument 0
+push argument 1
+eq
+not
+if-goto I-ELS2
+//   47       if (x = y) { return 1; }
+push constant 1
+return
+goto I-END2
+label I-ELS2
+//   48       else { return 0; }
+push constant 0
+return
+label I-END2
+goto I-END1
+label I-ELS1
+label I-END1
+//   51     let x = Math.div(Math.abs(x), Math.abs(y));
+push argument 0
+call Math.abs 1
+push argument 1
+call Math.abs 1
+call Math.div 2
+pop argument 0
+//   53     if (neg) { let x = -x; }
+push local 0
+not
+if-goto I-ELS3
+//   53     if (neg) { let x = -x; }
+push argument 0
+neg
+pop argument 0
+goto I-END3
+label I-ELS3
+label I-END3
+//   54     return x;
+push argument 0
+return
+// #########################################################
+// function int div
+function Math.div 4
+// ## LOCAL         0 q            int     
+// ## LOCAL         1 qy           int     
+// ## LOCAL         2 xm1          int     
+// ## LOCAL         3 ym1          int     
+// ## ARGUMENT      0 x            int     
+// ## ARGUMENT      1 y            int     
+//   61     let xm1 = x - 1;        // using x-1 and y-1 in comparisons instead of
+push argument 0
+push constant 1
+sub
+pop local 2
+//   62     let ym1 = y - 1;        // x and y. this treats -32768 and 32768
+push argument 1
+push constant 1
+sub
+pop local 3
+//   64     if ((ym1 < 0) | (ym1 > xm1)) { return 0; } // 2 * y may overflow
+push local 3
+push constant 0
+lt
+push local 3
+push local 2
+gt
+or
+not
+if-goto I-ELS0
+//   64     if ((ym1 < 0) | (ym1 > xm1)) { return 0; } // 2 * y may overflow
+push constant 0
+return
+goto I-END0
+label I-ELS0
+label I-END0
+//   66     let q = Math.div(x, y + y);
+push argument 0
+push argument 1
+push argument 1
+add
+call Math.div 2
+pop local 0
+//   67     let qy = q * y;
+push local 0
+push argument 1
+call Math.multiply 2
+pop local 1
+//   68     if ((xm1 - (qy + qy)) < ym1) { return q + q; }
+push local 2
+push local 1
+push local 1
+add
+sub
+push local 3
+lt
+not
+if-goto I-ELS1
+//   68     if ((xm1 - (qy + qy)) < ym1) { return q + q; }
+push local 0
+push local 0
+add
+return
+goto I-END1
+label I-ELS1
+label I-END1
+//   69     return q + q + 1;
+push local 0
+push local 0
+add
+push constant 1
+add
+return
+// #########################################################
+// function int sqrt
+function Math.sqrt 4
+// ## LOCAL         0 i            int     
+// ## LOCAL         1 y            int     
+// ## LOCAL         2 z            int     
+// ## LOCAL         3 z2           int     
+// ## ARGUMENT      0 x            int     
+//   76     if (x < 0) {
+push argument 0
+push constant 0
+lt
+not
+if-goto I-ELS0
+//   77       do Sys.error(4);       // cannot compute square root of a negative number
+push constant 4
+call Sys.error 1
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   80     let y = 0;
+push constant 0
+pop local 1
+//   81     let i = 7;    // (#bits/2)-1
+push constant 7
+pop local 0
+//   82     while (~(i < 0)) {
+label W-EXP0
+push local 0
+push constant 0
+lt
+not
+not
+if-goto W-END0
+//   83       let z = y + Util.bit(i);
+push local 1
+push local 0
+call Util.bit 1
+add
+pop local 2
+//   84       let z2 = z * z;
+push local 2
+push local 2
+call Math.multiply 2
+pop local 3
+//   85       if ( ~(z2 > x) & (z2 > 0)) {
+push local 3
+push argument 0
+gt
+not
+push local 3
+push constant 0
+gt
+and
+not
+if-goto I-ELS1
+//   86         let y = z;
+push local 2
+pop local 1
+goto I-END1
+label I-ELS1
+label I-END1
+//   88       let i = i - 1;
+push local 0
+push constant 1
+sub
+pop local 0
+goto W-EXP0
+label W-END0
+//   90     return y;
+push local 1
+return
+// #########################################################
+// function int floor
+function Math.floor 2
+// ## LOCAL         0 c            int     
+// ## LOCAL         1 d            int     
+// ## ARGUMENT      0 a            int     
+// ## ARGUMENT      1 b            int     
+//   96     let c = divide(a, b);
+push pointer 0
+push argument 0
+push argument 1
+call Math.divide 3
+pop local 0
+//   97     if (c < 0) {
+push local 0
+push constant 0
+lt
+not
+if-goto I-ELS0
+//   98       let d = a - (c * b);
+push argument 0
+push local 0
+push argument 1
+call Math.multiply 2
+sub
+pop local 1
+//   99       if (d > 0) {
+push local 1
+push constant 0
+gt
+not
+if-goto I-ELS1
+//  100         let c = c - 1;
+push local 0
+push constant 1
+sub
+pop local 0
+goto I-END1
+label I-ELS1
+label I-END1
+goto I-END0
+label I-ELS0
+label I-END0
+//  103     return c;
+push local 0
+return
+// #########################################################
+// function int reminder
+function Math.reminder 0
+// ## ARGUMENT      0 a            int     
+// ## ARGUMENT      1 b            int     
+//  108     return (a - (Math.divide(a, b) * b));
+push argument 0
+push argument 0
+push argument 1
+call Math.divide 2
+push argument 1
+call Math.multiply 2
+sub
+return
+// #########################################################
+// function int modulo
+function Math.modulo 0
+// ## ARGUMENT      0 a            int     
+// ## ARGUMENT      1 b            int     
+//  113     return (a -(Math.floor(a, b) * b));
+push argument 0
+push argument 0
+push argument 1
+call Math.floor 2
+push argument 1
+call Math.multiply 2
+sub
+return
+// #########################################################
+// function int max
+function Math.max 0
+// ## ARGUMENT      0 a            int     
+// ## ARGUMENT      1 b            int     
+//  118     if (a > b) {
+push argument 0
+push argument 1
+gt
+not
+if-goto I-ELS0
+//  119       return a;
+push argument 0
+return
+goto I-END0
+label I-ELS0
+//  122       return b;
+push argument 1
+return
+label I-END0
+// #########################################################
+// function int min
+function Math.min 0
+// ## ARGUMENT      0 a            int     
+// ## ARGUMENT      1 b            int     
+//  128     if (a < b) {
+push argument 0
+push argument 1
+lt
+not
+if-goto I-ELS0
+//  129       return a;
+push argument 0
+return
+goto I-END0
+label I-ELS0
+//  132       return b;
+push argument 1
+return
+label I-END0

@@ -1,0 +1,149 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step01/./vm/Main.vm generated at 2017-10-22 23:15
+// class Main
+// #########################################################
+// function void main
+function Main.main 6
+// ## LOCAL         0 temp         int     
+// ## LOCAL         1 a            int     
+// ## LOCAL         2 b            int     
+// ## LOCAL         3 c            int     
+// ## LOCAL         4 before       int     
+// ## LOCAL         5 after        int     
+//   15         do Memory.poke(8000, 333);       // RAM[8000]=333
+push constant 8000
+push constant 333
+call Memory.poke 2
+pop temp 0
+//   16         let temp = Memory.peek(8000);
+push constant 8000
+call Memory.peek 1
+pop local 0
+//   17         do Memory.poke(8001, temp + 1);  // RAM[8001]=334
+push constant 8001
+push local 0
+push constant 1
+add
+call Memory.poke 2
+pop temp 0
+//   19         let before = Util.getFreeListSize();
+call Util.getFreeListSize 0
+pop local 4
+//   21         let a = Memory.alloc(3);            // uses Memory.alloc
+push constant 3
+call Memory.alloc 1
+pop local 1
+//   22         do Memory.poke(a + 2, 222);
+push local 1
+push constant 2
+add
+push constant 222
+call Memory.poke 2
+pop temp 0
+//   23         do Memory.poke(8002, Memory.peek(a + 2));      // RAM[8002]=222
+push constant 8002
+push local 1
+push constant 2
+add
+call Memory.peek 1
+call Memory.poke 2
+pop temp 0
+//   25         let b = Memory.alloc(3);
+push constant 3
+call Memory.alloc 1
+pop local 2
+//   26         do Memory.poke((b + 1), Memory.peek(a + 2) -100);
+push local 2
+push constant 1
+add
+push local 1
+push constant 2
+add
+call Memory.peek 1
+push constant 100
+sub
+call Memory.poke 2
+pop temp 0
+//   27         do Memory.poke(8003, Memory.peek(b + 1));       // RAM[8003]=122
+push constant 8003
+push local 2
+push constant 1
+add
+call Memory.peek 1
+call Memory.poke 2
+pop temp 0
+//   29         let c = Memory.alloc(500);
+push constant 500
+call Memory.alloc 1
+pop local 3
+//   30         do Memory.poke((c + 499), Memory.peek(a + 2) - Memory.peek(b + 1));
+push local 3
+push constant 499
+add
+push local 1
+push constant 2
+add
+call Memory.peek 1
+push local 2
+push constant 1
+add
+call Memory.peek 1
+sub
+call Memory.poke 2
+pop temp 0
+//   31         do Memory.poke(8004, Memory.peek(c + 499));
+push constant 8004
+push local 3
+push constant 499
+add
+call Memory.peek 1
+call Memory.poke 2
+pop temp 0
+//   33         do Memory.deAlloc(a);
+push local 1
+call Memory.deAlloc 1
+pop temp 0
+//   34         do Memory.deAlloc(b);
+push local 2
+call Memory.deAlloc 1
+pop temp 0
+//   36         let b = Memory.alloc(3);
+push constant 3
+call Memory.alloc 1
+pop local 2
+//   37         do Memory.poke(b, Memory.peek(c + 499) - 90);
+push local 2
+push local 3
+push constant 499
+add
+call Memory.peek 1
+push constant 90
+sub
+call Memory.poke 2
+pop temp 0
+//   38         do Memory.poke(8005, Memory.peek(b));
+push constant 8005
+push local 2
+call Memory.peek 1
+call Memory.poke 2
+pop temp 0
+//   39         do Memory.deAlloc(c);
+push local 3
+call Memory.deAlloc 1
+pop temp 0
+//   40         do Memory.deAlloc(b);
+push local 2
+call Memory.deAlloc 1
+pop temp 0
+//   42         let after = Util.getFreeListSize();
+call Util.getFreeListSize 0
+pop local 5
+//   43         do Memory.poke(8006, before - after); // RAM[8006]=0
+push constant 8006
+push local 4
+push local 5
+sub
+call Memory.poke 2
+pop temp 0
+//   44         return;
+push constant 0
+return

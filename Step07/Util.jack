@@ -1,0 +1,75 @@
+// kittekat oct/2017
+
+class Util {
+
+
+  const BS = 0;             // freeList index block size
+  const NB = 1;             // freeList index next block
+  const NIL = -1;           // freeList end pointer
+
+  static Array bits;
+
+  // initialize
+  function void init() {
+    var int i, x;
+
+    // prepare bits
+    let bits = Array.new(16);
+    let x = 1;
+    let i = 0;
+    while (i < 16) {
+      let bits[i] = x;    // set 2**i
+      let x = x + x;          // x = 2*x
+      let i = i + 1;
+    }
+    return;
+  }
+
+  // return 2 ^ n
+  function int bit(int n) {
+    return bits[n];
+  }
+
+  // return true if bit# of n is set
+  function boolean isBitSet(int n, int i) {
+    return ~((n & bits[i]) = 0);
+  }
+
+  // calculate the sum of all free blocks
+  function int getFreeListSize() {
+    var int nxt, sum;
+
+    let nxt = Memory.getFreeListAddr();
+    let sum = 0;
+
+    let sum = sum + Memory.peek(nxt + BS);
+    let nxt = Memory.peek(nxt + NB);
+
+    while (~(nxt = NIL)) {
+      let sum = sum + Memory.peek(nxt + BS);        // BS
+      let nxt = Memory.peek(nxt + NB);              // NB
+    }
+    return sum;
+  }
+
+  // returns true if '0' <= c <= '9'    (should be moved to Char)
+  function boolean isNumeric(char c) {
+    if ((c < 48) | (c > 57)) {
+      return false;
+    }
+    return true;
+  }
+
+  // returns true if 'A' <= c <= 'Z' or 'a' <= c <= 'z'    (should be moved to Char)
+  function boolean isAlpha(char c) {
+    if (((c > 64) & (c < 91)) | ((c > 96) & (c < 123))) {
+      return true;
+    }
+    return false;
+  }
+
+  // returns true if '!' <= c <= '~'
+  function boolean isPrintable(char c) {
+    return ((c > 31) & (c < 127));
+  }
+}

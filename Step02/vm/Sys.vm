@@ -1,0 +1,49 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step02/./vm/Sys.vm generated at 2017-10-22 15:33
+// class Sys
+// #########################################################
+// function void init
+function Sys.init 0
+//    9       do Memory.init();
+// remote function call
+call Memory.init 0
+// discard the void return
+pop temp 0
+//   15       do Main.main();
+// remote function call
+call Main.main 0
+// discard the void return
+pop temp 0
+//   16       do Sys.halt();
+// remote function call
+call Sys.halt 0
+// discard the void return
+pop temp 0
+//   17       return;
+push constant 0
+return
+// #########################################################
+// function void halt
+function Sys.halt 0
+//   22       while (true) {}
+label W-EXP0
+push constant 1
+neg
+not
+if-goto W-END0
+goto W-EXP0
+label W-END0
+//   23       return;
+push constant 0
+return
+// #########################################################
+// function void error
+function Sys.error 0
+// ## ARGUMENT      0 errorCode    int     
+//   32       do Sys.halt();
+// remote function call
+call Sys.halt 0
+// discard the void return
+pop temp 0
+//   33       return;
+push constant 0
+return

@@ -1,0 +1,56 @@
+// adapted for Jack2c
+// from "The Elements of Computing Systems" by Nisan and Schocken, MIT Press
+// kittekat Oct/2017
+
+/**
+ * A basic system services library.
+ */
+class Sys {
+
+    /** Makes all required initializations. */
+    function void init() {
+      do Memory.init();
+      do Util.init();
+      do Output.init();
+      do Screen.init();
+      do Keyboard.init();
+      do Main.main();
+      do Sys.halt();
+      return;
+    }
+
+    /** Halts the execution. */
+    function void halt() {
+      while (true) {}
+      return;
+    }
+
+    /** prints the given error code in the form "ERR<errorCode>",
+     *  and halts. */
+    function void error(int errorCode) {
+      do Output.printString("Err");
+      do Output.printInt(errorCode);
+      do Sys.halt();
+      return;
+    }
+
+    /** Waits approximately duration milliseconds before it returns. */
+    function void wait(int duration) {
+      const TICKS  = 200;               // has to be adjusted for your system
+      var int ms, ticks;
+
+      if (~(duration > 0)) {
+        do Sys.error(1);                // duration must be positive
+      }
+
+      let ms = 0;
+      while (ms < duration) {
+        let ticks = 0;
+        while (ticks < TICKS) {           // (ticks < TICKS)
+          let ticks = ticks + 1;
+        }
+        let ms = ms + 1;
+      }
+      return;
+    }
+}

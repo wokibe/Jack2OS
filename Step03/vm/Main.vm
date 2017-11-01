@@ -1,0 +1,183 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step03/./vm/Main.vm generated at 2017-10-22 23:22
+// class Main
+// #########################################################
+// function void main
+function Main.main 1
+// ## LOCAL         0 r            Array   
+//   12         let r = 8000;
+push constant 8000
+pop local 0
+//   14         let r[0] = 2 * 3;                  // 6
+push constant 0
+push local 0
+add
+push constant 2
+push constant 3
+call Math.multiply 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   15         let r[1] = r[0] * (-30);           // 6 * (-30) = -180
+push constant 1
+push local 0
+add
+push constant 0
+push local 0
+add
+pop pointer 1
+push that 0
+push constant 30
+neg
+call Math.multiply 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   16         let r[2] = r[1] * 100;             // (-180) * 100 = -18000
+push constant 2
+push local 0
+add
+push constant 1
+push local 0
+add
+pop pointer 1
+push that 0
+push constant 100
+call Math.multiply 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   17         let r[3] = 1 * r[2];               // 1 * (-18000) = -18000
+push constant 3
+push local 0
+add
+push constant 1
+push constant 2
+push local 0
+add
+pop pointer 1
+push that 0
+call Math.multiply 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   18         let r[4] = r[3] * 0;               // 0
+push constant 4
+push local 0
+add
+push constant 3
+push local 0
+add
+pop pointer 1
+push that 0
+push constant 0
+call Math.multiply 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   20         let r[5] = 9 / 3;                  // 3
+push constant 5
+push local 0
+add
+push constant 9
+push constant 3
+call Math.divide 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   21         let r[6] = -18000 / 6;             // -3000
+push constant 6
+push local 0
+add
+push constant 18000
+neg
+push constant 6
+call Math.divide 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   22         let r[7] = 32766 / (-32767);       // 0
+push constant 7
+push local 0
+add
+push constant 32766
+push constant 32767
+neg
+call Math.divide 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   24         let r[8] = Math.sqrt(9);           // 3
+push constant 8
+push local 0
+add
+push constant 9
+call Math.sqrt 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   25         let r[9] = Math.sqrt(32767);       // 181
+push constant 9
+push local 0
+add
+push constant 32767
+call Math.sqrt 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   27         let r[10] = Math.min(345, 123);    // 123
+push constant 10
+push local 0
+add
+push constant 345
+push constant 123
+call Math.min 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   28         let r[11] = Math.max(123, -345);   // 123
+push constant 11
+push local 0
+add
+push constant 123
+push constant 345
+neg
+call Math.max 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   29         let r[12] = Math.abs(27);          // 27
+push constant 12
+push local 0
+add
+push constant 27
+call Math.abs 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   30         let r[13] = Math.abs(-32767);      // 32767
+push constant 13
+push local 0
+add
+push constant 32767
+neg
+call Math.abs 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   32         return;
+push constant 0
+return

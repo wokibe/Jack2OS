@@ -1,0 +1,135 @@
+// adapted for Jack2c
+// from "The Elements of Computing Systems" by Nisan and Schocken, MIT Press
+// kittekat Oct/2017
+
+/** * A basic math library. */
+class Math {
+  static Array bits;
+
+  /** Returns the absolute value of x. */
+  function int abs(int x) {
+    if (x < 0) {
+      return -x;
+    }
+    else {
+      return x;
+    }
+  }
+
+  /** Returns the product of x and y. */
+  function int multiply(int x, int y) {
+    var int sum, j, shiftedX;
+    let sum = 0;
+    let shiftedX = x;
+    let j = 0;
+    while (j < 16) {
+      if (Util.isBitSet(y, j)) {
+        let sum = sum + shiftedX;
+      }
+      let shiftedX = shiftedX + shiftedX;
+      let j = j + 1;
+    }
+    return sum;
+  }
+
+  /** Returns the integer part of x/y (with truncating to zero). */
+  function int divide(int x, int y) {
+    var boolean neg;
+
+    // found the solution for the overflow problem in
+    // http://www.marksmath.com/tecs/signed-overflow/overflow5.html
+
+    if (y = 0) { do Sys.error(3); }      // divide by zero
+
+    let neg = ~((x < 0) = (y < 0));
+
+    if (y = (32767 + 1)) {              // -32768
+      if (x = y) { return 1; }
+      else { return 0; }
+    }
+
+    let x = Math.div(Math.abs(x), Math.abs(y));
+
+    if (neg) { let x = -x; }
+    return x;
+  }
+
+  /** Returns the integer part of x/y, x >=0, y>=0 */
+  function int div(int x, int y) {
+    var int q, qy, xm1, ym1;
+
+    let xm1 = x - 1;        // using x-1 and y-1 in comparisons instead of
+    let ym1 = y - 1;        // x and y. this treats -32768 and 32768
+
+    if ((ym1 < 0) | (ym1 > xm1)) { return 0; } // 2 * y may overflow
+
+    let q = Math.div(x, y + y);
+    let qy = q * y;
+    if ((xm1 - (qy + qy)) < ym1) { return q + q; }
+    return q + q + 1;
+  }
+
+  /** Returns the integer part of the square root of x. */
+  function int sqrt(int x) {
+    var int i, y, z, z2;
+
+    if (x < 0) {
+      do Sys.error(4);       // cannot compute square root of a negative number
+    }
+
+    let y = 0;
+    let i = 7;    // (#bits/2)-1
+    while (~(i < 0)) {
+      let z = y + Util.bit(i);
+      let z2 = z * z;
+      if ( ~(z2 > x) & (z2 > 0)) {
+        let y = z;
+      }
+      let i = i - 1;
+    }
+    return y;
+  }
+
+  /** Returns the integer part of x/y (with truncating to -infinity) */
+  function int floor(int a, int b) {
+    var int c, d;
+    let c = divide(a, b);
+    if (c < 0) {
+      let d = a - (c * b);
+      if (d > 0) {
+        let c = c - 1;
+      }
+    }
+    return c;
+  }
+
+  /** Returns modulo (when truncating to zero) */
+  function int reminder(int a, int b) {
+    return (a - (Math.divide(a, b) * b));
+  }
+
+  /** Returns modulo (when truncating to -infinity) */
+  function int modulo(int a, int b) {
+    return (a -(Math.floor(a, b) * b));
+  }
+
+  /** Returns the greater number. */
+  function int max(int a, int b) {
+    if (a > b) {
+      return a;
+    }
+    else {
+      return b;
+    }
+  }
+
+  /** Returns the smaller number. */
+  function int min(int a, int b) {
+    if (a < b) {
+      return a;
+    }
+    else {
+      return b;
+    }
+  }
+}

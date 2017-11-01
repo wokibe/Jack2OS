@@ -1,0 +1,135 @@
+// adapted for Jack2c
+// from "The Elements of Computing Systems" by Nisan and Schocken, MIT Press
+// kittekat Oct/2017
+
+class Memory {
+  //  free memory blocks structure:
+  //    block[0]: size of the block
+  //    block[1]: pointer to the next block
+  //
+  //  the static variable freeList points to the first block
+  //  the pointer of the last block contains null (or -1 for easy testing )
+  //
+  //  we keep the starting address of the free blocks in ascending order
+  //
+  //  blocks in use keep their size in block[0] (= requested size + 1)
+  //  alloc() returns the pointer to  block[1]
+  //
+  const HEAP_START = 2048;
+  const HEAP_END   = 16383;
+  const BS         = 0;      // index for BLOCK_SIZE
+  const NB         = 1;      // index for NEXT_BLOCK
+  const NIL        = -1;     // could be set to 0 in production
+
+  static Array memory;
+  static Array freeList;
+
+  /** Initializes memory parameters. */
+  function void init() {
+    let memory = 0;
+    let freeList = HEAP_START;
+    let freeList[BS] = HEAP_END - HEAP_START;
+    let freeList[NB] = NIL;
+    return;
+  }
+
+  /** Returns the value of the main memory at this address. */
+  function int peek(int address) {
+    return memory[address];
+  }
+
+  /** Sets the value of the main memory at this address
+   *  to the given value. */
+  function void poke(int address, int value) {
+    let memory[address] = value;
+    return;
+  }
+
+  /** finds and allocates from the heap a memory block of the
+   *  specified size and returns a reference to its base address. */
+  function int alloc(int size) {
+    var Array nextBlock, prevBlock, restBlock;
+    var int nextSize;
+
+    let nextBlock = freeList;
+    let prevBlock = NIL;
+
+    if (size < 0) {
+      do Sys.error(5);                    // requested size must be positive
+    }
+
+    while (true) {
+      let nextSize = nextBlock[BS];
+      if (nextSize > (size + 3)) {
+        // straegy: first fit (required overhead is 3)
+        // keep the upper part in the single linked list of free blocks
+        // one additional word needed
+        let restBlock = nextBlock + size + 1;
+        let restBlock[BS] = nextSize - (size + 1);
+        let restBlock[NB] = nextBlock[NB];
+
+        // prepare the lower part as returned block
+        // save the size of the block for a proper deallocation
+        let nextBlock[BS] = size + 1;
+
+        // link the rest into the list of free blocks
+        if (prevBlock = NIL) {
+          let freeList = restBlock;                 // this is the first block
+        } else {                                    // all other blocks
+          let prevBlock[NB] = restBlock;
+        }
+        return (nextBlock + 1);
+      }
+      else {                                        // no fit, try next block
+        let prevBlock = nextBlock;
+        let nextBlock = nextBlock[NB];
+        if (nextBlock = NIL) {
+          do Sys.error(6);                          // give up
+        }
+      }
+    }
+    return NIL;
+  }
+
+  /** De-allocates the given object and frees its space. */
+  function void deAlloc(int object) {
+    var Array nextBlock, prevBlock, returnedBlock;
+    let returnedBlock = object - 1;             // we still have here the size
+    // find the correct place to insert the returned block
+    let nextBlock = freeList;
+    if (returnedBlock < freeList) {             // put it in front of the list
+      let returnedBlock[NB] = freeList;
+      let freeList = returnedBlock;
+    } else {
+      let prevBlock = freeList;
+      let nextBlock = prevBlock[NB];
+      while ((nextBlock < returnedBlock) & (~(nextBlock = NIL))) {
+        let prevBlock = nextBlock;
+        let nextBlock = nextBlock[NB];
+      }
+      let returnedBlock[NB] = nextBlock;          // found the correct place
+      let prevBlock[NB] = returnedBlock;
+    }
+
+    // loop over the free list to eventually coalesce neighboring blocks
+    let prevBlock = freeList;
+    let nextBlock = prevBlock[NB];
+    while (~(nextBlock = NIL)) {
+      while ((prevBlock + prevBlock[BS]) = nextBlock) {      // found neighbors
+        let prevBlock[BS] = prevBlock[BS] + nextBlock[BS];   // add the sizes
+        let prevBlock[NB] = nextBlock[NB];                   // move the pointer
+        let nextBlock = nextBlock[NB];
+        }
+      if (~(nextBlock = NIL)) {
+        let prevBlock = nextBlock;                           // try further up
+        let nextBlock = prevBlock[NB];
+      }
+    }
+    return;
+  }
+
+  // enable other classes the access to this static variable
+  function int getFreeListAddr() {
+    return freeList;
+  }
+}

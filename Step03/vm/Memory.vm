@@ -1,0 +1,417 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step03/./vm/Memory.vm generated at 2017-10-22 23:22
+// class Memory
+// ## STATIC        0 memory       Array   
+// ## STATIC        1 freeList     Array   
+// ## CONSTANT   2048 HEAP_START   int     
+// ## CONSTANT  16383 HEAP_END     int     
+// ## CONSTANT      0 BS           int     
+// ## CONSTANT      1 NB           int     
+// ## CONSTANT     -1 NIL          int     
+// #########################################################
+// function void init
+function Memory.init 0
+//   29     let memory = 0;
+push constant 0
+pop static 0
+//   30     let freeList = HEAP_START;
+push constant 2048
+pop static 1
+//   31     let freeList[BS] = HEAP_END - HEAP_START;
+push constant 0
+push static 1
+add
+push constant 16383
+push constant 2048
+sub
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   32     let freeList[NB] = NIL;
+push constant 1
+push static 1
+add
+push constant 1
+neg
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   33     return;
+push constant 0
+return
+// #########################################################
+// function int peek
+function Memory.peek 0
+// ## ARGUMENT      0 address      int     
+//   38     return memory[address];
+push argument 0
+push static 0
+add
+pop pointer 1
+push that 0
+return
+// #########################################################
+// function void poke
+function Memory.poke 0
+// ## ARGUMENT      0 address      int     
+// ## ARGUMENT      1 value        int     
+//   44     let memory[address] = value;
+push argument 0
+push static 0
+add
+push argument 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   45     return;
+push constant 0
+return
+// #########################################################
+// function int alloc
+function Memory.alloc 4
+// ## LOCAL         0 nextBlock    Array   
+// ## LOCAL         1 prevBlock    Array   
+// ## LOCAL         2 restBlock    Array   
+// ## LOCAL         3 nextSize     int     
+// ## ARGUMENT      0 size         int     
+//   54     let nextBlock = freeList;
+push static 1
+pop local 0
+//   55     let prevBlock = NIL;
+push constant 1
+neg
+pop local 1
+//   57     if (size < 0) {
+push argument 0
+push constant 0
+lt
+not
+if-goto I-ELS0
+//   58       do Sys.error(5);                    // requested size must be positive
+push constant 5
+call Sys.error 1
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   61     while (true) {
+label W-EXP0
+push constant 1
+neg
+not
+if-goto W-END0
+//   62       let nextSize = nextBlock[BS];
+push constant 0
+push local 0
+add
+pop pointer 1
+push that 0
+pop local 3
+//   63       if (nextSize > (size + 3)) {
+push local 3
+push argument 0
+push constant 3
+add
+gt
+not
+if-goto I-ELS1
+//   67         let restBlock = nextBlock + size + 1;
+push local 0
+push argument 0
+add
+push constant 1
+add
+pop local 2
+//   68         let restBlock[BS] = nextSize - (size + 1);
+push constant 0
+push local 2
+add
+push local 3
+push argument 0
+push constant 1
+add
+sub
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   69         let restBlock[NB] = nextBlock[NB];
+push constant 1
+push local 2
+add
+push constant 1
+push local 0
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   73         let nextBlock[BS] = size + 1;
+push constant 0
+push local 0
+add
+push argument 0
+push constant 1
+add
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   76         if (prevBlock = NIL) {
+push local 1
+push constant 1
+neg
+eq
+not
+if-goto I-ELS2
+//   77           let freeList = restBlock;                 // this is the first block
+push local 2
+pop static 1
+goto I-END2
+label I-ELS2
+//   79           let prevBlock[NB] = restBlock;
+push constant 1
+push local 1
+add
+push local 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label I-END2
+//   81         return (nextBlock + 1);
+push local 0
+push constant 1
+add
+return
+goto I-END1
+label I-ELS1
+//   84         let prevBlock = nextBlock;
+push local 0
+pop local 1
+//   85         let nextBlock = nextBlock[NB];
+push constant 1
+push local 0
+add
+pop pointer 1
+push that 0
+pop local 0
+//   86         if (nextBlock = NIL) {
+push local 0
+push constant 1
+neg
+eq
+not
+if-goto I-ELS3
+//   87           do Sys.error(5);                          // give up
+push constant 5
+call Sys.error 1
+pop temp 0
+goto I-END3
+label I-ELS3
+label I-END3
+label I-END1
+goto W-EXP0
+label W-END0
+//   91     return NIL;
+push constant 1
+neg
+return
+// #########################################################
+// function void deAlloc
+function Memory.deAlloc 3
+// ## LOCAL         0 nextBlock    Array   
+// ## LOCAL         1 prevBlock    Array   
+// ## LOCAL         2 returnedBlock Array   
+// ## ARGUMENT      0 object       int     
+//   97     let returnedBlock = object - 1;             // we still have here the size
+push argument 0
+push constant 1
+sub
+pop local 2
+//   99     let nextBlock = freeList;
+push static 1
+pop local 0
+//  100     if (returnedBlock < freeList) {             // put it in front of the list
+push local 2
+push static 1
+lt
+not
+if-goto I-ELS0
+//  101       let returnedBlock[NB] = freeList;
+push constant 1
+push local 2
+add
+push static 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  102       let freeList = returnedBlock;
+push local 2
+pop static 1
+goto I-END0
+label I-ELS0
+//  104       let prevBlock = freeList;
+push static 1
+pop local 1
+//  105       let nextBlock = prevBlock[NB];
+push constant 1
+push local 1
+add
+pop pointer 1
+push that 0
+pop local 0
+//  106       while ((nextBlock < returnedBlock) & (~(nextBlock = NIL))) {
+label W-EXP0
+push local 0
+push local 2
+lt
+push local 0
+push constant 1
+neg
+eq
+not
+and
+not
+if-goto W-END0
+//  107         let prevBlock = nextBlock;
+push local 0
+pop local 1
+//  108         let nextBlock = nextBlock[NB];
+push constant 1
+push local 0
+add
+pop pointer 1
+push that 0
+pop local 0
+goto W-EXP0
+label W-END0
+//  110       let returnedBlock[NB] = nextBlock;          // found the correct place
+push constant 1
+push local 2
+add
+push local 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  111       let prevBlock[NB] = returnedBlock;
+push constant 1
+push local 1
+add
+push local 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+label I-END0
+//  115     let prevBlock = freeList;
+push static 1
+pop local 1
+//  116     let nextBlock = prevBlock[NB];
+push constant 1
+push local 1
+add
+pop pointer 1
+push that 0
+pop local 0
+//  117     while (~(nextBlock = NIL)) {
+label W-EXP1
+push local 0
+push constant 1
+neg
+eq
+not
+not
+if-goto W-END1
+//  118       while ((prevBlock + prevBlock[BS]) = nextBlock) {      // found neighbors
+label W-EXP2
+push local 1
+push constant 0
+push local 1
+add
+pop pointer 1
+push that 0
+add
+push local 0
+eq
+not
+if-goto W-END2
+//  119         let prevBlock[BS] = prevBlock[BS] + nextBlock[BS];   // add the sizes
+push constant 0
+push local 1
+add
+push constant 0
+push local 1
+add
+pop pointer 1
+push that 0
+push constant 0
+push local 0
+add
+pop pointer 1
+push that 0
+add
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  120         let prevBlock[NB] = nextBlock[NB];                   // move the pointer
+push constant 1
+push local 1
+add
+push constant 1
+push local 0
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  121         let nextBlock = nextBlock[NB];
+push constant 1
+push local 0
+add
+pop pointer 1
+push that 0
+pop local 0
+goto W-EXP2
+label W-END2
+//  123       if (~(nextBlock = NIL)) {
+push local 0
+push constant 1
+neg
+eq
+not
+not
+if-goto I-ELS1
+//  124         let prevBlock = nextBlock;                           // try further up
+push local 0
+pop local 1
+//  125         let nextBlock = prevBlock[NB];
+push constant 1
+push local 1
+add
+pop pointer 1
+push that 0
+pop local 0
+goto I-END1
+label I-ELS1
+label I-END1
+goto W-EXP1
+label W-END1
+//  128     return;
+push constant 0
+return
+// #########################################################
+// function int getFreeListAddr
+function Memory.getFreeListAddr 0
+//  133     return freeList;
+push static 1
+return

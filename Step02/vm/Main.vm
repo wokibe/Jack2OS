@@ -1,0 +1,254 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step02/./vm/Main.vm generated at 2017-10-22 15:33
+// class Main
+// #########################################################
+// function void main
+function Main.main 6
+// ## LOCAL         0 r            Array   
+// ## LOCAL         1 a            Array   
+// ## LOCAL         2 b            Array   
+// ## LOCAL         3 c            Array   
+// ## LOCAL         4 before       int     
+// ## LOCAL         5 after        int     
+//   14         let r = 8000;
+push constant 8000
+pop local 0
+//   16         let before = Util.getFreeListSize();
+// remote function call
+call Util.getFreeListSize 0
+pop local 4
+//   18         let a = Array.new(3);
+// remote function call
+push constant 3
+call Array.new 1
+pop local 1
+//   19         let a[2] = 222;
+// calculate array index
+push constant 2
+// add base address
+push local 1
+add
+// calculate value
+push constant 222
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   20         let r[0] = a[2];              // RAM[8000]=222
+// calculate array index
+push constant 0
+// add base address
+push local 0
+add
+// calculate value
+// calculate array index
+push constant 2
+// add base address
+push local 1
+add
+// read from array
+pop pointer 1
+push that 0
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   22         let b = Array.new(3);
+// remote function call
+push constant 3
+call Array.new 1
+pop local 2
+//   23         let b[1] = a[2] - 100;
+// calculate array index
+push constant 1
+// add base address
+push local 2
+add
+// calculate value
+// calculate array index
+push constant 2
+// add base address
+push local 1
+add
+// read from array
+pop pointer 1
+push that 0
+push constant 100
+sub
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   24         let r[1] = b[1];              // RAM[8001]=122
+// calculate array index
+push constant 1
+// add base address
+push local 0
+add
+// calculate value
+// calculate array index
+push constant 1
+// add base address
+push local 2
+add
+// read from array
+pop pointer 1
+push that 0
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   26         let c = Array.new(500);
+// remote function call
+push constant 500
+call Array.new 1
+pop local 3
+//   27         let c[499] = a[2] - b[1];
+// calculate array index
+push constant 499
+// add base address
+push local 3
+add
+// calculate value
+// calculate array index
+push constant 2
+// add base address
+push local 1
+add
+// read from array
+pop pointer 1
+push that 0
+// calculate array index
+push constant 1
+// add base address
+push local 2
+add
+// read from array
+pop pointer 1
+push that 0
+sub
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   28         let r[2] = c[499];            // RAM[8002]=100
+// calculate array index
+push constant 2
+// add base address
+push local 0
+add
+// calculate value
+// calculate array index
+push constant 499
+// add base address
+push local 3
+add
+// read from array
+pop pointer 1
+push that 0
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   30         do a.dispose();
+// remote method call
+// set arg 0 with remote object
+push local 1
+call Array.dispose 1
+// discard the void return
+pop temp 0
+//   31         do b.dispose();
+// remote method call
+// set arg 0 with remote object
+push local 2
+call Array.dispose 1
+// discard the void return
+pop temp 0
+//   33         let b = Array.new(3);
+// remote function call
+push constant 3
+call Array.new 1
+pop local 2
+//   34         let b[0] = c[499] - 90;
+// calculate array index
+push constant 0
+// add base address
+push local 2
+add
+// calculate value
+// calculate array index
+push constant 499
+// add base address
+push local 3
+add
+// read from array
+pop pointer 1
+push that 0
+push constant 90
+sub
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   35         let r[3] = b[0];              // RAM[8003]=10
+// calculate array index
+push constant 3
+// add base address
+push local 0
+add
+// calculate value
+// calculate array index
+push constant 0
+// add base address
+push local 2
+add
+// read from array
+pop pointer 1
+push that 0
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   37         do c.dispose();
+// remote method call
+// set arg 0 with remote object
+push local 3
+call Array.dispose 1
+// discard the void return
+pop temp 0
+//   38         do b.dispose();
+// remote method call
+// set arg 0 with remote object
+push local 2
+call Array.dispose 1
+// discard the void return
+pop temp 0
+//   40         let after = Util.getFreeListSize();
+// remote function call
+call Util.getFreeListSize 0
+pop local 5
+//   41         let r[4] = before - after;    // RAM[8004]=0
+// calculate array index
+push constant 4
+// add base address
+push local 0
+add
+// calculate value
+push local 4
+push local 5
+sub
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   43         return;
+push constant 0
+return

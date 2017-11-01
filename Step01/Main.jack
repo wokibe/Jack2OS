@@ -1,0 +1,47 @@
+// adapted for Jack2c
+// from "The Elements of Computing Systems" by Nisan and Schocken, MIT Press
+// kittekat Oct/2017
+
+/** Test program for the OS Memory class. */
+class Main {
+
+    /** Performs several memory manipulations. */
+    function void main() {
+        var int temp;
+        // var Array a, b, c;
+        var int a, b, c;
+        var int before, after;
+
+        do Memory.poke(8000, 333);       // RAM[8000]=333
+        let temp = Memory.peek(8000);
+        do Memory.poke(8001, temp + 1);  // RAM[8001]=334
+
+        let before = Util.getFreeListSize();
+
+        let a = Memory.alloc(3);            // uses Memory.alloc
+        do Memory.poke(a + 2, 222);
+        do Memory.poke(8002, Memory.peek(a + 2));      // RAM[8002]=222
+
+        let b = Memory.alloc(3);
+        do Memory.poke((b + 1), Memory.peek(a + 2) -100);
+        do Memory.poke(8003, Memory.peek(b + 1));       // RAM[8003]=122
+
+        let c = Memory.alloc(500);
+        do Memory.poke((c + 499), Memory.peek(a + 2) - Memory.peek(b + 1));
+        do Memory.poke(8004, Memory.peek(c + 499));
+
+        do Memory.deAlloc(a);
+        do Memory.deAlloc(b);
+
+        let b = Memory.alloc(3);
+        do Memory.poke(b, Memory.peek(c + 499) - 90);
+        do Memory.poke(8005, Memory.peek(b));
+        do Memory.deAlloc(c);
+        do Memory.deAlloc(b);
+
+        let after = Util.getFreeListSize();
+        do Memory.poke(8006, before - after); // RAM[8006]=0
+        return;
+    }
+
+}

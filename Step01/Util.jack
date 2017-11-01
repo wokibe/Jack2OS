@@ -1,0 +1,38 @@
+// kittekat oct/2017
+
+class Util {
+
+  const BS = 0;             // freeList index block size
+  const NB = 1;             // freeList index next block
+  const NIL = -1;           // freeList end pointer
+
+  // static Array bits;
+
+/*
+  // initialize
+  function void init() {
+    let BS = 0;
+    let NB = 1;
+    let NIL = -1;
+    return;
+  }
+*/
+
+  // calculate the sum of all free blocks
+  function int getFreeListSize() {
+    var int nxt, sum;
+
+    let nxt = Memory.getFreeListAddr();
+    let sum = 0;
+
+    let sum = sum + Memory.peek(nxt + BS);
+    let nxt = Memory.peek(nxt + NB);
+
+    while (~(nxt = NIL)) {
+      let sum = sum + Memory.peek(nxt + BS);        // BS
+      let nxt = Memory.peek(nxt + NB);              // NB
+    }
+
+    return sum;
+  }
+}

@@ -1,0 +1,44 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step03/./vm/Sys.vm generated at 2017-10-22 23:22
+// class Sys
+// #########################################################
+// function void init
+function Sys.init 0
+//    9       do Memory.init();
+call Memory.init 0
+pop temp 0
+//   10       do Util.init();
+call Util.init 0
+pop temp 0
+//   15       do Main.main();
+call Main.main 0
+pop temp 0
+//   16       do Sys.halt();
+call Sys.halt 0
+pop temp 0
+//   17       return;
+push constant 0
+return
+// #########################################################
+// function void halt
+function Sys.halt 0
+//   22       while (true) {}
+label W-EXP0
+push constant 1
+neg
+not
+if-goto W-END0
+goto W-EXP0
+label W-END0
+//   23       return;
+push constant 0
+return
+// #########################################################
+// function void error
+function Sys.error 0
+// ## ARGUMENT      0 errorCode    int     
+//   32       do Sys.halt();
+call Sys.halt 0
+pop temp 0
+//   33       return;
+push constant 0
+return

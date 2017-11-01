@@ -1,0 +1,43 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step05/./vm/Array.vm generated at 2017-10-28 21:08
+// class Array
+// #########################################################
+// function Array new
+function Array.new 0
+// ## ARGUMENT      0 size         int     
+//   12       if (~(size > 0)) {
+push argument 0
+push constant 0
+gt
+not
+not
+if-goto I-ELS0
+//   13         do Sys.error(2);         // Array size must be positive
+// remote function call
+push constant 2
+call Sys.error 1
+// discard the void return
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   15       return Memory.alloc(size);
+// remote function call
+push argument 0
+call Memory.alloc 1
+return
+// #########################################################
+// method void dispose
+function Array.dispose 0
+// ## ARGUMENT      0 this         Array   
+// set pointer to fields
+push argument 0
+pop pointer 0
+//   20       do Memory.deAlloc(this);
+// remote function call
+push pointer 0
+call Memory.deAlloc 1
+// discard the void return
+pop temp 0
+//   21       return;
+push constant 0
+return

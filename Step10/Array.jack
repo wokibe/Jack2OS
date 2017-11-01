@@ -1,0 +1,23 @@
+// adapted for Jack2c
+// from "The Elements of Computing Systems" by Nisan and Schocken, MIT Press
+// kittekat Oct/2017
+
+/**
+ * A general array - can be used to hold any type of object.
+ */
+class Array {
+
+    /** Constructs a new Array of the given size. */
+    function Array new(int size) {
+      if (~(size > 0)) {
+        do Sys.error(2);         // Array size must be positive
+      }
+      return Memory.alloc(size);
+    }
+
+    /** De-allocates the array and frees its space. */
+    method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+    }
+}

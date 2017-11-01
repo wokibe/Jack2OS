@@ -1,0 +1,1155 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step07/./vm/Main.vm generated at 2017-10-29 19:26
+// class Main
+// #########################################################
+// function void main
+function Main.main 7
+// ## LOCAL         0 c            char    
+// ## LOCAL         1 key          char    
+// ## LOCAL         2 s            String  
+// ## LOCAL         3 i            int     
+// ## LOCAL         4 ok           boolean 
+// ## LOCAL         5 before       int     
+// ## LOCAL         6 after        int     
+//   16     let before = Memory.getFreeListAddr();
+// remote function call
+call Memory.getFreeListAddr 0
+pop local 5
+//   18     let ok = false;
+push constant 0
+pop local 4
+//   19     do Output.printDropString("keyPressed test:");
+// remote function call
+push constant 16
+call String.new 1
+push constant 107
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   20     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   21     while (~ok) {
+label W-EXP0
+push local 4
+not
+not
+if-goto W-END0
+//   22       do Output.printDropString("Please press the 'Page Down' key");
+// remote function call
+push constant 32
+call String.new 1
+push constant 80
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 68
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 119
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   23       while (key = 0) {
+label W-EXP1
+push local 1
+push constant 0
+eq
+not
+if-goto W-END1
+//   24         let key = Keyboard.keyPressed();
+// remote function call
+call Keyboard.keyPressed 0
+pop local 1
+goto W-EXP1
+label W-END1
+//   26       let c = key;
+push local 1
+pop local 0
+//   27       while (~(key = 0)) {
+label W-EXP2
+push local 1
+push constant 0
+eq
+not
+not
+if-goto W-END2
+//   28         let key = Keyboard.keyPressed();
+// remote function call
+call Keyboard.keyPressed 0
+pop local 1
+goto W-EXP2
+label W-END2
+//   30       do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   32       if (c = 137) {
+push local 0
+push constant 137
+eq
+not
+if-goto I-ELS0
+//   33        	do Output.printDropString("ok");
+// remote function call
+push constant 2
+call String.new 1
+push constant 111
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   34 	    do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   35 	      let ok = true;
+push constant 1
+neg
+pop local 4
+goto I-END0
+label I-ELS0
+label I-END0
+goto W-EXP0
+label W-END0
+//   39     let ok = false;
+push constant 0
+pop local 4
+//   40     do Output.printDropString("readChar test:");
+// remote function call
+push constant 14
+call String.new 1
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 67
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   41     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   42     do Output.printDropString("(Verify that the pressed character is echoed to the screen)");
+// remote function call
+push constant 59
+call String.new 1
+push constant 40
+call String.appendChar 2
+push constant 86
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 41
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   43     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   44     while (~ok) {
+label W-EXP3
+push local 4
+not
+not
+if-goto W-END3
+//   45       do Output.printDropString("Please press the number '3': ");
+// remote function call
+push constant 29
+call String.new 1
+push constant 80
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 98
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 51
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   46     	let c = Keyboard.readChar();
+// remote function call
+call Keyboard.readChar 0
+pop local 0
+//   47       do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   49       if (c = 51) {
+push local 0
+push constant 51
+eq
+not
+if-goto I-ELS1
+//   50 	    do Output.printString("ok");
+// remote function call
+push constant 2
+call String.new 1
+push constant 111
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+call Output.printString 1
+// discard the void return
+pop temp 0
+//   51 	    do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   52 	    let ok = true;
+push constant 1
+neg
+pop local 4
+goto I-END1
+label I-ELS1
+label I-END1
+goto W-EXP3
+label W-END3
+//   56 	  let ok = false;
+push constant 0
+pop local 4
+//   57     do Output.printDropString("readLine test:");
+// remote function call
+push constant 14
+call String.new 1
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   58     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   59     do Output.printDropString("(Verify echo and usage of 'backspace')");
+// remote function call
+push constant 38
+call String.new 1
+push constant 40
+call String.appendChar 2
+push constant 86
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 98
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 41
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   60     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   61     while (~ok) {
+label W-EXP4
+push local 4
+not
+not
+if-goto W-END4
+//   62     	let s = Keyboard.readLine("Please type 'JACK' and press enter: ");
+// remote function call
+push constant 36
+call String.new 1
+push constant 80
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 74
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 67
+call String.appendChar 2
+push constant 75
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Keyboard.readLine 1
+pop local 2
+//   64 	    if (s.length() = 4) {
+// remote method call
+// set arg 0 with remote object
+push local 2
+call String.length 1
+push constant 4
+eq
+not
+if-goto I-ELS2
+//   65 	    if ((s.charAt(0) = 74) & (s.charAt(1) = 65) &
+// remote method call
+// set arg 0 with remote object
+push local 2
+push constant 0
+call String.charAt 2
+push constant 74
+eq
+// remote method call
+// set arg 0 with remote object
+push local 2
+push constant 1
+call String.charAt 2
+push constant 65
+eq
+and
+// remote method call
+// set arg 0 with remote object
+push local 2
+push constant 2
+call String.charAt 2
+push constant 67
+eq
+and
+// remote method call
+// set arg 0 with remote object
+push local 2
+push constant 3
+call String.charAt 2
+push constant 75
+eq
+and
+not
+if-goto I-ELS3
+//   67 	      do Output.printDropString("ok");
+// remote function call
+push constant 2
+call String.new 1
+push constant 111
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   68    	    do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   69    	    let ok = true;
+push constant 1
+neg
+pop local 4
+goto I-END3
+label I-ELS3
+label I-END3
+goto I-END2
+label I-ELS2
+label I-END2
+goto W-EXP4
+label W-END4
+//   74 	  let ok = false;
+push constant 0
+pop local 4
+//   75     do Output.printDropString("readInt test:");
+// remote function call
+push constant 13
+call String.new 1
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   76     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   77     do Output.printDropString("(Verify echo and usage of 'backspace')");
+// remote function call
+push constant 38
+call String.new 1
+push constant 40
+call String.appendChar 2
+push constant 86
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 103
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 98
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 41
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   78     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   79     while (~ok) {
+label W-EXP5
+push local 4
+not
+not
+if-goto W-END5
+//   80   	  let i = Keyboard.readInt("Please type '-32123' and press enter: ");
+// remote function call
+push constant 38
+call String.new 1
+push constant 80
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 51
+call String.appendChar 2
+push constant 50
+call String.appendChar 2
+push constant 49
+call String.appendChar 2
+push constant 50
+call String.appendChar 2
+push constant 51
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Keyboard.readInt 1
+pop local 3
+//   82 	    if (i = (-32123)) {
+push local 3
+push constant 32123
+neg
+eq
+not
+if-goto I-ELS4
+//   83 	      do Output.printDropString("ok");
+// remote function call
+push constant 2
+call String.new 1
+push constant 111
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   84 	      do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   85 	      let ok = true;
+push constant 1
+neg
+pop local 4
+goto I-END4
+label I-ELS4
+label I-END4
+goto W-EXP5
+label W-END5
+//   89     do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+//   90     do Output.printDropString("Test completed successfully");
+// remote function call
+push constant 27
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   92     let after = Memory.getFreeListAddr();
+// remote function call
+call Memory.getFreeListAddr 0
+pop local 6
+//   93     if ((after - before) > 0) {
+push local 6
+push local 5
+sub
+push constant 0
+gt
+not
+if-goto I-ELS5
+//   94       do Output.printDropString("Memory leak: ");
+// remote function call
+push constant 13
+call String.new 1
+push constant 77
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   95       do Output.printInt(after - before);
+// remote function call
+push local 6
+push local 5
+sub
+call Output.printInt 1
+// discard the void return
+pop temp 0
+//   96       do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+goto I-END5
+label I-ELS5
+label I-END5
+//   99     return;
+push constant 0
+return

@@ -1,0 +1,133 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step03/./vm/Util.vm generated at 2017-10-22 23:22
+// class Util
+// ## STATIC        0 bits         Array   
+// ## CONSTANT      0 BS           int     
+// ## CONSTANT      1 NB           int     
+// ## CONSTANT     -1 NIL          int     
+// #########################################################
+// function void init
+function Util.init 2
+// ## LOCAL         0 i            int     
+// ## LOCAL         1 x            int     
+//   17     let bits = Array.new(16);
+push constant 16
+call Array.new 1
+pop static 0
+//   18     let x = 1;
+push constant 1
+pop local 1
+//   19     let i = 0;
+push constant 0
+pop local 0
+//   20     while (i < 16) {
+label W-EXP0
+push local 0
+push constant 16
+lt
+not
+if-goto W-END0
+//   21       let bits[i] = x;    // set 2**i
+push local 0
+push static 0
+add
+push local 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   22       let x = x + x;          // x = 2*x
+push local 1
+push local 1
+add
+pop local 1
+//   23       let i = i + 1;
+push local 0
+push constant 1
+add
+pop local 0
+goto W-EXP0
+label W-END0
+//   25     return;
+push constant 0
+return
+// #########################################################
+// function int bit
+function Util.bit 0
+// ## ARGUMENT      0 n            int     
+//   30     return bits[n];
+push argument 0
+push static 0
+add
+pop pointer 1
+push that 0
+return
+// #########################################################
+// function boolean isBitSet
+function Util.isBitSet 0
+// ## ARGUMENT      0 n            int     
+// ## ARGUMENT      1 i            int     
+//   35     return ~((n & bits[i]) = 0);
+push argument 0
+push argument 1
+push static 0
+add
+pop pointer 1
+push that 0
+and
+push constant 0
+eq
+not
+return
+// #########################################################
+// function int getFreeListSize
+function Util.getFreeListSize 2
+// ## LOCAL         0 nxt          int     
+// ## LOCAL         1 sum          int     
+//   42     let nxt = Memory.getFreeListAddr();
+call Memory.getFreeListAddr 0
+pop local 0
+//   43     let sum = 0;
+push constant 0
+pop local 1
+//   45     let sum = sum + Memory.peek(nxt + BS);
+push local 1
+push local 0
+push constant 0
+add
+call Memory.peek 1
+add
+pop local 1
+//   46     let nxt = Memory.peek(nxt + NB);
+push local 0
+push constant 1
+add
+call Memory.peek 1
+pop local 0
+//   48     while (~(nxt = NIL)) {
+label W-EXP0
+push local 0
+push constant 1
+neg
+eq
+not
+not
+if-goto W-END0
+//   49       let sum = sum + Memory.peek(nxt + BS);        // BS
+push local 1
+push local 0
+push constant 0
+add
+call Memory.peek 1
+add
+pop local 1
+//   50       let nxt = Memory.peek(nxt + NB);              // NB
+push local 0
+push constant 1
+add
+call Memory.peek 1
+pop local 0
+goto W-EXP0
+label W-END0
+//   52     return sum;
+push local 1
+return

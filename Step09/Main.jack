@@ -1,0 +1,194 @@
+class Main {
+// check Memory.alloc() and Memory.deAlloc()
+// the idea comes from: http://nand2tetris-questions-and-answers-forum.32033.n3.nabble.com/How-to-Check-if-dispose-works-td4027606.html
+
+  const BS = 0;             // index block size
+  const NB = 1;             // index next block
+  const NIL = -1;           // null pointer
+
+  function void main() {
+    var Array a, b, c, d, e, f;
+    var int loops;
+    var int size;
+    var boolean fill, verbose;
+    var int i;
+    var char ch;
+
+    do Output.printDropString("Stress? (Y/N):");
+    let ch = Keyboard.readChar();
+    do Output.println();
+
+    if (ch = "Y") {
+      let size  = 100;
+      let loops = 1000;
+      let fill  = false;
+      let verbose = false;
+    } else {
+      let size  = 5;
+      let loops = 1;
+      let fill  = true;
+      let verbose = true;
+    }
+
+    let i = 0;
+
+    // do Main.printHeapList(0);
+    do Main.printFreeList();
+
+    while (i < loops) {
+      let a = Array.new(size);
+      if (fill) { do Main.fillIt(a, size, 97); }
+      let b = Array.new(size);
+      if (fill) { do Main.fillIt(b, size, 98); }
+      let c = Array.new(size);
+      if (fill) { do Main.fillIt(c, size, 99); }
+      let d = Array.new(size);
+      if (fill) { do Main.fillIt(d, size, 100); }
+      let e = Array.new(size);
+      if (fill) { do Main.fillIt(e, size, 101); }
+      let f = Array.new(size);
+      if (fill) { do Main.fillIt(f, size, 102); }
+
+      if (verbose) { do Main.printFreeList(); }
+      do e.dispose();               // a b c d - f
+      if (verbose) { do Main.printFreeList(); }
+      do b.dispose();               // a - c d - f
+      if (verbose) { do Main.printFreeList(); }
+      do a.dispose();               // - - c d - f
+      if (verbose) { do Main.printFreeList(); }
+      do d.dispose();               // - - c - - f
+      if (verbose) { do Main.printFreeList(); }
+      do c.dispose();               // - - - - - f
+      if (verbose) { do Main.printFreeList(); }
+      do f.dispose();
+      if (verbose) { do Main.printFreeList(); }
+
+      let i = i + 1;
+      if (size < 1000) {
+        let size = size + 11;
+      }
+    }
+
+    do Main.printFreeList();    // should deliver the same output at begin
+    return;
+  }
+
+  // fill the arrays to identify them when searching the RAM
+  function void fillIt(Array a, int s, char c) {
+    var int i;
+
+    let i = 0;
+    while (i < s) {
+      let a[i] = c;
+      let i = i + 1;
+    }
+    return;
+  }
+  // calculate the sum of all free blocks
+  function int getFreeListSize() {
+    var int nxt, sum;
+
+    let nxt = Memory.getFreeListAddr();
+    let sum = 0;
+
+    let sum = sum + Memory.peek(nxt + BS);
+    let nxt = Memory.peek(nxt + NB);
+
+    while (~(nxt = NIL)) {
+      let sum = sum + Memory.peek(nxt + BS);        // BS
+      let nxt = Memory.peek(nxt + NB);              // NB
+    }
+
+    return sum;
+  }
+
+
+  // show all free blocks
+  function void printFreeList() {
+    var int freeSize, i, max, nxt, tmp;
+    var Array list;
+    var String txt;
+
+    let freeSize = 40;                            // guesstimate
+    let list = Array.new(freeSize + 2);
+    let nxt = Memory.getFreeListAddr();
+
+    let list[0] = nxt;
+    let list[1] = Memory.peek(nxt + BS);
+    let tmp = Memory.peek(nxt + NB);
+    let list[2] = tmp;
+    let nxt = tmp;
+    let i = 3;
+
+    while ( ~(nxt = NIL) & (i < freeSize)) {
+      let list[i] = Memory.peek(nxt + BS);        // BS
+      let tmp = Memory.peek(nxt + NB);            // NB
+      let list[i + 1] = tmp;
+      let nxt = tmp;
+      let i = i + 2;
+    }
+
+    let txt = "FREE: ";
+    do Output.printString(txt);
+    do Output.printInt(list[0]);
+    do txt.dispose();
+    let max = i;
+    let i = 1;
+    while (i < max) {
+      do Output.printChar(58);              // ":"
+      do Output.printInt(list[i]);
+      do Output.printChar(47);              // "/"
+      do Output.printInt(list[i + 1]);
+      let i = i + 2;
+    }
+    do Output.println();
+
+    do list.dispose();
+    return;
+  }
+
+  // show all heap blocks above some limit
+  function void printHeapList(int limit) {
+    var int heapSize, i, max, nxt, siz, tmp;
+    var Array list;
+    var String txt;
+
+    let heapSize = 400;                            // guesstimate
+    let list = Array.new(heapSize + 2);
+    let nxt = 2048;                                // HEAP_START
+
+    let i = 0;
+
+    while ( ~(nxt = 16383) & (i < heapSize)) {    // HEAP_END
+      let tmp = nxt;
+      let siz = Memory.peek(nxt + BS);
+      let nxt = nxt + siz;
+      if (nxt > limit) {
+        let list[i] = tmp;
+        let list[i + 1] = siz;
+        let i = i + 2;
+      }
+    }
+
+    let txt = "HEAP > ";
+    do Output.printString(txt);
+    do Output.printInt(limit);
+    do Output.printChar(58);
+    do Output.printInt(list[0]);
+    do txt.dispose();
+
+    let max = i;
+    let i = 1;
+    while (i < max) {
+      do Output.printChar(58);              // ":"
+      do Output.printInt(list[i]);
+      do Output.printChar(47);              // "/"
+      do Output.printInt(list[i + 1]);
+      let i = i + 2;
+    }
+    do Output.println();
+
+    do list.dispose();
+    return;
+  }
+}

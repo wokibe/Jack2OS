@@ -1,0 +1,692 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step10/./vm/Main.vm generated at 2017-10-31 21:14
+// class Main
+// #########################################################
+// function void main
+function Main.main 1
+// ## LOCAL         0 err          int     
+//    6     let err = Keyboard.readInt("Enter the number of the OS error to provoke: ");
+// remote function call
+push constant 45
+call String.new 1
+push constant 69
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 98
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 102
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 104
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 79
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Keyboard.readInt 1
+pop local 0
+//    7     if (err = 1) { do Main.err01(); }
+push local 0
+push constant 1
+eq
+not
+if-goto I-ELS0
+//    7     if (err = 1) { do Main.err01(); }
+// remote function call
+call Main.err01 0
+// discard the void return
+pop temp 0
+goto I-END0
+label I-ELS0
+//    8     else { if (err = 2) { do Main.err02(); }
+push local 0
+push constant 2
+eq
+not
+if-goto I-ELS1
+//    8     else { if (err = 2) { do Main.err02(); }
+// remote function call
+call Main.err02 0
+// discard the void return
+pop temp 0
+goto I-END1
+label I-ELS1
+//    9     else { if (err = 3) { do Main.err03(); }
+push local 0
+push constant 3
+eq
+not
+if-goto I-ELS2
+//    9     else { if (err = 3) { do Main.err03(); }
+// remote function call
+call Main.err03 0
+// discard the void return
+pop temp 0
+goto I-END2
+label I-ELS2
+//   10     else { if (err = 4) { do Main.err04(); }
+push local 0
+push constant 4
+eq
+not
+if-goto I-ELS3
+//   10     else { if (err = 4) { do Main.err04(); }
+// remote function call
+call Main.err04 0
+// discard the void return
+pop temp 0
+goto I-END3
+label I-ELS3
+//   11     else { if (err = 5) { do Main.err05(); }
+push local 0
+push constant 5
+eq
+not
+if-goto I-ELS4
+//   11     else { if (err = 5) { do Main.err05(); }
+// remote function call
+call Main.err05 0
+// discard the void return
+pop temp 0
+goto I-END4
+label I-ELS4
+//   12     else { if (err = 6) { do Main.err06(); }
+push local 0
+push constant 6
+eq
+not
+if-goto I-ELS5
+//   12     else { if (err = 6) { do Main.err06(); }
+// remote function call
+call Main.err06 0
+// discard the void return
+pop temp 0
+goto I-END5
+label I-ELS5
+//   13     else { if (err = 7) { do Main.err07(); }
+push local 0
+push constant 7
+eq
+not
+if-goto I-ELS6
+//   13     else { if (err = 7) { do Main.err07(); }
+// remote function call
+call Main.err07 0
+// discard the void return
+pop temp 0
+goto I-END6
+label I-ELS6
+//   14     else { if (err = 8) { do Main.err08(); }
+push local 0
+push constant 8
+eq
+not
+if-goto I-ELS7
+//   14     else { if (err = 8) { do Main.err08(); }
+// remote function call
+call Main.err08 0
+// discard the void return
+pop temp 0
+goto I-END7
+label I-ELS7
+//   15     else { if (err = 9) { do Main.err09(); }
+push local 0
+push constant 9
+eq
+not
+if-goto I-ELS8
+//   15     else { if (err = 9) { do Main.err09(); }
+// remote function call
+call Main.err09 0
+// discard the void return
+pop temp 0
+goto I-END8
+label I-ELS8
+//   16     else { if (err = 12) { do Main.err12(); }
+push local 0
+push constant 12
+eq
+not
+if-goto I-ELS9
+//   16     else { if (err = 12) { do Main.err12(); }
+// remote function call
+call Main.err12 0
+// discard the void return
+pop temp 0
+goto I-END9
+label I-ELS9
+//   17     else { if (err = 13) { do Main.err13(); }
+push local 0
+push constant 13
+eq
+not
+if-goto I-ELS10
+//   17     else { if (err = 13) { do Main.err13(); }
+// remote function call
+call Main.err13 0
+// discard the void return
+pop temp 0
+goto I-END10
+label I-ELS10
+//   18     else { if (err = 14) { do Main.err14(); }
+push local 0
+push constant 14
+eq
+not
+if-goto I-ELS11
+//   18     else { if (err = 14) { do Main.err14(); }
+// remote function call
+call Main.err14 0
+// discard the void return
+pop temp 0
+goto I-END11
+label I-ELS11
+//   19     else { if (err = 15) { do Main.err15(); }
+push local 0
+push constant 15
+eq
+not
+if-goto I-ELS12
+//   19     else { if (err = 15) { do Main.err15(); }
+// remote function call
+call Main.err15 0
+// discard the void return
+pop temp 0
+goto I-END12
+label I-ELS12
+//   20     else { if (err = 16) { do Main.err16(); }
+push local 0
+push constant 16
+eq
+not
+if-goto I-ELS13
+//   20     else { if (err = 16) { do Main.err16(); }
+// remote function call
+call Main.err16 0
+// discard the void return
+pop temp 0
+goto I-END13
+label I-ELS13
+//   21     else { if (err = 17) { do Main.err17(); }
+push local 0
+push constant 17
+eq
+not
+if-goto I-ELS14
+//   21     else { if (err = 17) { do Main.err17(); }
+// remote function call
+call Main.err17 0
+// discard the void return
+pop temp 0
+goto I-END14
+label I-ELS14
+//   22     else { if (err = 18) { do Main.err18(); }
+push local 0
+push constant 18
+eq
+not
+if-goto I-ELS15
+//   22     else { if (err = 18) { do Main.err18(); }
+// remote function call
+call Main.err18 0
+// discard the void return
+pop temp 0
+goto I-END15
+label I-ELS15
+//   23     else { if (err = 19) { do Main.err19(); }
+push local 0
+push constant 19
+eq
+not
+if-goto I-ELS16
+//   23     else { if (err = 19) { do Main.err19(); }
+// remote function call
+call Main.err19 0
+// discard the void return
+pop temp 0
+goto I-END16
+label I-ELS16
+//   24     else { if (err = 20) { do Main.err20(); }
+push local 0
+push constant 20
+eq
+not
+if-goto I-ELS17
+//   24     else { if (err = 20) { do Main.err20(); }
+// remote function call
+call Main.err20 0
+// discard the void return
+pop temp 0
+goto I-END17
+label I-ELS17
+//   26     else { do Output.printString("Unknown error"); }}}}}}}}}}}}}}}}}}
+// remote function call
+push constant 13
+call String.new 1
+push constant 85
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 119
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+call Output.printString 1
+// discard the void return
+pop temp 0
+label I-END17
+label I-END16
+label I-END15
+label I-END14
+label I-END13
+label I-END12
+label I-END11
+label I-END10
+label I-END9
+label I-END8
+label I-END7
+label I-END6
+label I-END5
+label I-END4
+label I-END3
+label I-END2
+label I-END1
+label I-END0
+//   27     return;
+push constant 0
+return
+// #########################################################
+// function void err01
+function Main.err01 0
+//   31     do Sys.wait(-1);
+// remote function call
+push constant 1
+neg
+call Sys.wait 1
+// discard the void return
+pop temp 0
+//   32     return;
+push constant 0
+return
+// #########################################################
+// function void err02
+function Main.err02 1
+// ## LOCAL         0 a            Array   
+//   37     let a = Array.new(0);
+// remote function call
+push constant 0
+call Array.new 1
+pop local 0
+//   38     return;
+push constant 0
+return
+// #########################################################
+// function void err03
+function Main.err03 3
+// ## LOCAL         0 x            int     
+// ## LOCAL         1 y            int     
+// ## LOCAL         2 z            int     
+//   43     let x = 3;
+push constant 3
+pop local 0
+//   44     let y = 0;
+push constant 0
+pop local 1
+//   45     let z = x / y;
+push local 0
+push local 1
+call Math.divide 2
+pop local 2
+//   46     return;
+push constant 0
+return
+// #########################################################
+// function void err04
+function Main.err04 1
+// ## LOCAL         0 x            int     
+//   51     let x = Math.sqrt(-2);
+// remote function call
+push constant 2
+neg
+call Math.sqrt 1
+pop local 0
+//   52     return;
+push constant 0
+return
+// #########################################################
+// function void err05
+function Main.err05 1
+// ## LOCAL         0 a            Array   
+//   57     let a = Memory.alloc(-1);
+// remote function call
+push constant 1
+neg
+call Memory.alloc 1
+pop local 0
+//   58     return;
+push constant 0
+return
+// #########################################################
+// function void err06
+function Main.err06 1
+// ## LOCAL         0 a            Array   
+//   63     let a = Array.new(16*1024);
+// remote function call
+push constant 16
+push constant 1024
+call Math.multiply 2
+call Array.new 1
+pop local 0
+//   64     return;
+push constant 0
+return
+// #########################################################
+// function void err07
+function Main.err07 0
+//   68     do Screen.drawPixel(600, 300);
+// remote function call
+push constant 600
+push constant 300
+call Screen.drawPixel 2
+// discard the void return
+pop temp 0
+//   69     return;
+push constant 0
+return
+// #########################################################
+// function void err08
+function Main.err08 0
+//   73     do Screen.drawLine(-1, -2, 100, 100);
+// remote function call
+push constant 1
+neg
+push constant 2
+neg
+push constant 100
+push constant 100
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   74     return;
+push constant 0
+return
+// #########################################################
+// function void err09
+function Main.err09 0
+//   78     do Screen.drawRectangle(-5, 20, 200, 400);
+// remote function call
+push constant 5
+neg
+push constant 20
+push constant 200
+push constant 400
+call Screen.drawRectangle 4
+// discard the void return
+pop temp 0
+//   79     return;
+push constant 0
+return
+// #########################################################
+// function void err12
+function Main.err12 0
+//   83     do Screen.drawCircle(100, 400, 10);
+// remote function call
+push constant 100
+push constant 400
+push constant 10
+call Screen.drawCircle 3
+// discard the void return
+pop temp 0
+//   84     return;
+push constant 0
+return
+// #########################################################
+// function void err13
+function Main.err13 0
+//   88     do Screen.drawCircle(100, 100, 200);
+// remote function call
+push constant 100
+push constant 100
+push constant 200
+call Screen.drawCircle 3
+// discard the void return
+pop temp 0
+//   89     return;
+push constant 0
+return
+// #########################################################
+// function void err14
+function Main.err14 1
+// ## LOCAL         0 s            String  
+//   94     let s = String.new(-3);
+// remote function call
+push constant 3
+neg
+call String.new 1
+pop local 0
+//   95     return;
+push constant 0
+return
+// #########################################################
+// function void err15
+function Main.err15 2
+// ## LOCAL         0 s            String  
+// ## LOCAL         1 c            Char    
+//  101     let s = String.new(10);
+// remote function call
+push constant 10
+call String.new 1
+pop local 0
+//  102     let s = s.appendChar(65);
+// remote method call
+// set arg 0 with remote object
+push local 0
+push constant 65
+call String.appendChar 2
+pop local 0
+//  103     let c = s.charAt(5);
+// remote method call
+// set arg 0 with remote object
+push local 0
+push constant 5
+call String.charAt 2
+pop local 1
+//  104     return;
+push constant 0
+return
+// #########################################################
+// function void err16
+function Main.err16 1
+// ## LOCAL         0 s            String  
+//  109     let s = String.new(10);
+// remote function call
+push constant 10
+call String.new 1
+pop local 0
+//  110     let s = s.appendChar(65);
+// remote method call
+// set arg 0 with remote object
+push local 0
+push constant 65
+call String.appendChar 2
+pop local 0
+//  111     do s.setCharAt(5, 66);
+// remote method call
+// set arg 0 with remote object
+push local 0
+push constant 5
+push constant 66
+call String.setCharAt 3
+// discard the void return
+pop temp 0
+//  112     return;
+push constant 0
+return
+// #########################################################
+// function void err17
+function Main.err17 1
+// ## LOCAL         0 s            String  
+//  117     let s = "xyz";
+push constant 3
+call String.new 1
+push constant 120
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 122
+call String.appendChar 2
+pop local 0
+//  118     let s = s.appendChar(67);
+// remote method call
+// set arg 0 with remote object
+push local 0
+push constant 67
+call String.appendChar 2
+pop local 0
+//  119     return;
+push constant 0
+return
+// #########################################################
+// function void err18
+function Main.err18 1
+// ## LOCAL         0 s            String  
+//  124     let s = "";
+push constant 0
+call String.new 1
+pop local 0
+//  125     do s.eraseLastChar();
+// remote method call
+// set arg 0 with remote object
+push local 0
+call String.eraseLastChar 1
+// discard the void return
+pop temp 0
+//  126     return;
+push constant 0
+return
+// #########################################################
+// function void err19
+function Main.err19 1
+// ## LOCAL         0 s            String  
+//  131     let s = String.new(3);
+// remote function call
+push constant 3
+call String.new 1
+pop local 0
+//  132     do s.setInt(1234);
+// remote method call
+// set arg 0 with remote object
+push local 0
+push constant 1234
+call String.setInt 2
+// discard the void return
+pop temp 0
+//  133     return;
+push constant 0
+return
+// #########################################################
+// function void err20
+function Main.err20 0
+//  137     do Output.moveCursor(70, 12);
+// remote function call
+push constant 70
+push constant 12
+call Output.moveCursor 2
+// discard the void return
+pop temp 0
+//  138     return;
+push constant 0
+return

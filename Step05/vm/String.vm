@@ -1,0 +1,560 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step05/./vm/String.vm generated at 2017-10-28 21:08
+// class String
+// ## THIS          0 string       Array   
+// ## THIS          1 maxSize      int     
+// ## THIS          2 index        int     
+// #########################################################
+// constructor String new
+function String.new 0
+// ## ARGUMENT      0 maxLength    int     
+// allocate space for fields
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+//   15       if (maxLength < 0) {
+push argument 0
+push constant 0
+lt
+not
+if-goto I-ELS0
+//   16         do Sys.error(14);              // Maximum length must be non-negative
+// remote function call
+push constant 14
+call Sys.error 1
+// discard the void return
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   18       let maxSize = maxLength;
+push argument 0
+pop this 1
+//   19       if (maxLength = 0) {
+push argument 0
+push constant 0
+eq
+not
+if-goto I-ELS1
+//   20         let maxLength = 1;             // allow maxLength = 0, but create with 1
+push constant 1
+pop argument 0
+goto I-END1
+label I-ELS1
+label I-END1
+//   22       let string = Array.new(maxLength);
+// remote function call
+push argument 0
+call Array.new 1
+pop this 0
+//   23       let index = 0;
+push constant 0
+pop this 2
+//   24       return this;
+push pointer 0
+return
+// #########################################################
+// method void dispose
+function String.dispose 0
+// ## ARGUMENT      0 this         String  
+// set pointer to fields
+push argument 0
+pop pointer 0
+//   29       do string.dispose();
+// remote method call
+// set arg 0 with remote object
+push this 0
+call Array.dispose 1
+// discard the void return
+pop temp 0
+//   30       do Memory.deAlloc(this);
+// remote function call
+push pointer 0
+call Memory.deAlloc 1
+// discard the void return
+pop temp 0
+//   31       return;
+push constant 0
+return
+// #########################################################
+// method int length
+function String.length 0
+// ## ARGUMENT      0 this         String  
+// set pointer to fields
+push argument 0
+pop pointer 0
+//   36       return index;
+push this 2
+return
+// #########################################################
+// method char charAt
+function String.charAt 0
+// ## ARGUMENT      0 this         String  
+// ## ARGUMENT      1 j            int     
+// set pointer to fields
+push argument 0
+pop pointer 0
+//   41       if ((j < 0) | (~(j < index))) {
+push argument 1
+push constant 0
+lt
+push argument 1
+push this 2
+lt
+not
+or
+not
+if-goto I-ELS0
+//   42         do Sys.error(15);          // index out of bounds
+// remote function call
+push constant 15
+call Sys.error 1
+// discard the void return
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   44       return string[j];
+// calculate array index
+push argument 1
+// add base address
+push this 0
+add
+// read from array
+pop pointer 1
+push that 0
+return
+// #########################################################
+// method void setCharAt
+function String.setCharAt 0
+// ## ARGUMENT      0 this         String  
+// ## ARGUMENT      1 j            int     
+// ## ARGUMENT      2 c            char    
+// set pointer to fields
+push argument 0
+pop pointer 0
+//   49       if ((j < 0) | (~(j < index))) {
+push argument 1
+push constant 0
+lt
+push argument 1
+push this 2
+lt
+not
+or
+not
+if-goto I-ELS0
+//   50         do Sys.error(16);          // index out of bounds
+// remote function call
+push constant 16
+call Sys.error 1
+// discard the void return
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   52       let string[j] = c;
+// calculate array index
+push argument 1
+// add base address
+push this 0
+add
+// calculate value
+push argument 2
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   53       return;
+push constant 0
+return
+// #########################################################
+// method void appendChar
+function String.appendChar 0
+// ## ARGUMENT      0 this         String  
+// ## ARGUMENT      1 c            char    
+// set pointer to fields
+push argument 0
+pop pointer 0
+//   59       if (index < maxSize) {
+push this 2
+push this 1
+lt
+not
+if-goto I-ELS0
+//   60         let string[index] = c;
+// calculate array index
+push this 2
+// add base address
+push this 0
+add
+// calculate value
+push argument 1
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   61         let index = index + 1;
+push this 2
+push constant 1
+add
+pop this 2
+goto I-END0
+label I-ELS0
+//   64         do Sys.error(17);          //  string is full
+// remote function call
+push constant 17
+call Sys.error 1
+// discard the void return
+pop temp 0
+label I-END0
+//   66       return this;
+push pointer 0
+return
+// #########################################################
+// method void eraseLastChar
+function String.eraseLastChar 0
+// ## ARGUMENT      0 this         String  
+// set pointer to fields
+push argument 0
+pop pointer 0
+//   71       if (index = 0) {
+push this 2
+push constant 0
+eq
+not
+if-goto I-ELS0
+//   72         do Sys.error(18);          // string is empty
+// remote function call
+push constant 18
+call Sys.error 1
+// discard the void return
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   74       let index = index - 1;
+push this 2
+push constant 1
+sub
+pop this 2
+//   75       return;
+push constant 0
+return
+// #########################################################
+// method int intValue
+function String.intValue 5
+// ## LOCAL         0 val          int     
+// ## LOCAL         1 len          int     
+// ## LOCAL         2 i            int     
+// ## LOCAL         3 nxt          int     
+// ## LOCAL         4 neg          boolean 
+// ## ARGUMENT      0 this         String  
+// set pointer to fields
+push argument 0
+pop pointer 0
+//   84       let val = 0;                // accumlator
+push constant 0
+pop local 0
+//   85       let neg = false;            // minus flag
+push constant 0
+pop local 4
+//   86       let len = length();
+// local method call
+// set arg 0 with local object
+push pointer 0
+call String.length 1
+pop local 1
+//   87       if (len = 0) {
+push local 1
+push constant 0
+eq
+not
+if-goto I-ELS0
+//   88         return 0;
+push constant 0
+return
+goto I-END0
+label I-ELS0
+label I-END0
+//   90       let i = 0;
+push constant 0
+pop local 2
+//   92       let nxt = charAt(i);   // get first character
+// local method call
+// set arg 0 with local object
+push pointer 0
+push local 2
+call String.charAt 2
+pop local 3
+//   93       if (nxt = 45) {             // minus sign
+push local 3
+push constant 45
+eq
+not
+if-goto I-ELS1
+//   94         let neg = true;
+push constant 1
+neg
+pop local 4
+//   95         let i = i + 1;
+push local 2
+push constant 1
+add
+pop local 2
+//   96         let nxt = charAt(i); // get next character
+// local method call
+// set arg 0 with local object
+push pointer 0
+push local 2
+call String.charAt 2
+pop local 3
+goto I-END1
+label I-ELS1
+label I-END1
+//   99       while (Util.isNumeric(nxt) = true) {
+label W-EXP0
+// remote function call
+push local 3
+call Util.isNumeric 1
+push constant 1
+neg
+eq
+not
+if-goto W-END0
+//  100         let val = (val * 10) + (nxt - 48);
+push local 0
+push constant 10
+call Math.multiply 2
+push local 3
+push constant 48
+sub
+add
+pop local 0
+//  101         let i = i + 1;
+push local 2
+push constant 1
+add
+pop local 2
+//  102         if (i = len) {            // end of string
+push local 2
+push local 1
+eq
+not
+if-goto I-ELS2
+//  103           let nxt = 0;            // stop the while loop
+push constant 0
+pop local 3
+goto I-END2
+label I-ELS2
+//  106           let nxt = charAt(i); // get next character
+// local method call
+// set arg 0 with local object
+push pointer 0
+push local 2
+call String.charAt 2
+pop local 3
+label I-END2
+goto W-EXP0
+label W-END0
+//  110       if (neg) {
+push local 4
+not
+if-goto I-ELS3
+//  111         let val = -val;
+push local 0
+neg
+pop local 0
+goto I-END3
+label I-ELS3
+label I-END3
+//  113       return val;
+push local 0
+return
+// #########################################################
+// method void setInt
+function String.setInt 5
+// ## LOCAL         0 help         Array   
+// ## LOCAL         1 i            int     
+// ## LOCAL         2 n            int     
+// ## LOCAL         3 m            int     
+// ## LOCAL         4 neg          boolean 
+// ## ARGUMENT      0 this         String  
+// ## ARGUMENT      1 number       int     
+// set pointer to fields
+push argument 0
+pop pointer 0
+//  125       let help = Array.new(6);           // -32767
+// remote function call
+push constant 6
+call Array.new 1
+pop local 0
+//  126       let neg = false;
+push constant 0
+pop local 4
+//  127       let i = 0;
+push constant 0
+pop local 1
+//  129       if (number < 0) {                      // take care of a negative number
+push argument 1
+push constant 0
+lt
+not
+if-goto I-ELS0
+//  130         let neg = true;
+push constant 1
+neg
+pop local 4
+//  131         let number = -number;
+push argument 1
+neg
+pop argument 1
+goto I-END0
+label I-ELS0
+label I-END0
+//  134       while (number > 0) {
+label W-EXP0
+push argument 1
+push constant 0
+gt
+not
+if-goto W-END0
+//  135         let n = Math.divide(number, 10);  // right hand digit
+// remote function call
+push argument 1
+push constant 10
+call Math.divide 2
+pop local 2
+//  136         let m = number - (n * 10);        // modulo
+push argument 1
+push local 2
+push constant 10
+call Math.multiply 2
+sub
+pop local 3
+//  137         let help[i] = m + 48;             // save to char converted digit
+// calculate array index
+push local 1
+// add base address
+push local 0
+add
+// calculate value
+push local 3
+push constant 48
+add
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  138         let i = i + 1;
+push local 1
+push constant 1
+add
+pop local 1
+//  139         let number = n;
+push local 2
+pop argument 1
+goto W-EXP0
+label W-END0
+//  141       if (neg) {
+push local 4
+not
+if-goto I-ELS1
+//  142         let help[i] = 45;                 // minus sign
+// calculate array index
+push local 1
+// add base address
+push local 0
+add
+// calculate value
+push constant 45
+// store into array
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  143         let i = i + 1;
+push local 1
+push constant 1
+add
+pop local 1
+goto I-END1
+label I-ELS1
+label I-END1
+//  146       let index = 0;                      // clear the string
+push constant 0
+pop this 2
+//  147       if (i > maxSize) {                  // check available string space
+push local 1
+push this 1
+gt
+not
+if-goto I-ELS2
+//  148         do Sys.error(19);                 // insufficient string capacity
+// remote function call
+push constant 19
+call Sys.error 1
+// discard the void return
+pop temp 0
+goto I-END2
+label I-ELS2
+label I-END2
+//  158       while (i > 0) {                     // revert help to string
+label W-EXP1
+push local 1
+push constant 0
+gt
+not
+if-goto W-END1
+//  159         let i = i - 1;
+push local 1
+push constant 1
+sub
+pop local 1
+//  160         do appendChar(help[i]);
+// local method call
+// set arg 0 with local object
+push pointer 0
+// calculate array index
+push local 1
+// add base address
+push local 0
+add
+// read from array
+pop pointer 1
+push that 0
+call String.appendChar 2
+// discard the void return
+pop temp 0
+goto W-EXP1
+label W-END1
+//  163       do help.dispose();                  // get rid of intermediate string
+// remote method call
+// set arg 0 with remote object
+push local 0
+call Array.dispose 1
+// discard the void return
+pop temp 0
+//  164       return;
+push constant 0
+return
+// #########################################################
+// function char newLine
+function String.newLine 0
+//  169       return 128;
+push constant 128
+return
+// #########################################################
+// function char backSpace
+function String.backSpace 0
+//  174       return 129;
+push constant 129
+return
+// #########################################################
+// function char doubleQuote
+function String.doubleQuote 0
+//  179       return 34;
+push constant 34
+return

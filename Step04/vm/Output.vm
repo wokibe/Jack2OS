@@ -1,0 +1,1956 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step04/./vm/Output.vm generated at 2017-10-28 15:01
+// class Output
+// ## STATIC        0 charMaps     Array   
+// ## STATIC        1 cursor_x     int     
+// ## STATIC        2 cursor_y     int     
+// ## STATIC        3 screen       Array   
+// ## STATIC        4 charMasks    Array   
+// #########################################################
+// function void init
+function Output.init 0
+//   31     let cursor_x = 0;
+push constant 0
+pop static 1
+//   32     let cursor_y = 0;
+push constant 0
+pop static 2
+//   34     let screen = 16384;
+push constant 16384
+pop static 3
+//   36     let charMasks = Array.new(2);
+push constant 2
+call Array.new 1
+pop static 4
+//   37     let charMasks[0] = 255;           // right half
+push constant 0
+push static 4
+add
+push constant 255
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   38     let charMasks[1] = ~(255);        // left half
+push constant 1
+push static 4
+add
+push constant 255
+not
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//   40     do Output.initMap();
+call Output.initMap 0
+pop temp 0
+//   41     return;
+push constant 0
+return
+// #########################################################
+// function void initMap
+function Output.initMap 1
+// ## LOCAL         0 i            int     
+//   48     let charMaps = Array.new(127);
+push constant 127
+call Array.new 1
+pop static 0
+//   51     do Output.create(0,63,63,63,63,63,63,63,63,63,0,0);
+push constant 0
+push constant 63
+push constant 63
+push constant 63
+push constant 63
+push constant 63
+push constant 63
+push constant 63
+push constant 63
+push constant 63
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   54     do Output.create(32,0,0,0,0,0,0,0,0,0,0,0);          //
+push constant 32
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   55     do Output.create(33,12,30,30,30,12,12,0,12,12,0,0);  // !
+push constant 33
+push constant 12
+push constant 30
+push constant 30
+push constant 30
+push constant 12
+push constant 12
+push constant 0
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   56     do Output.create(34,54,54,20,0,0,0,0,0,0,0,0);       // "
+push constant 34
+push constant 54
+push constant 54
+push constant 20
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   57     do Output.create(35,0,18,18,63,18,18,63,18,18,0,0);  // #
+push constant 35
+push constant 0
+push constant 18
+push constant 18
+push constant 63
+push constant 18
+push constant 18
+push constant 63
+push constant 18
+push constant 18
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   58     do Output.create(36,12,30,51,3,30,48,51,30,12,12,0); // $
+push constant 36
+push constant 12
+push constant 30
+push constant 51
+push constant 3
+push constant 30
+push constant 48
+push constant 51
+push constant 30
+push constant 12
+push constant 12
+push constant 0
+call Output.create 12
+pop temp 0
+//   59     do Output.create(37,0,0,35,51,24,12,6,51,49,0,0);    // %
+push constant 37
+push constant 0
+push constant 0
+push constant 35
+push constant 51
+push constant 24
+push constant 12
+push constant 6
+push constant 51
+push constant 49
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   60     do Output.create(38,12,30,30,12,54,27,27,27,54,0,0); // &
+push constant 38
+push constant 12
+push constant 30
+push constant 30
+push constant 12
+push constant 54
+push constant 27
+push constant 27
+push constant 27
+push constant 54
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   61     do Output.create(39,12,12,6,0,0,0,0,0,0,0,0);        // '
+push constant 39
+push constant 12
+push constant 12
+push constant 6
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   62     do Output.create(40,24,12,6,6,6,6,6,12,24,0,0);      // (
+push constant 40
+push constant 24
+push constant 12
+push constant 6
+push constant 6
+push constant 6
+push constant 6
+push constant 6
+push constant 12
+push constant 24
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   63     do Output.create(41,6,12,24,24,24,24,24,12,6,0,0);   // )
+push constant 41
+push constant 6
+push constant 12
+push constant 24
+push constant 24
+push constant 24
+push constant 24
+push constant 24
+push constant 12
+push constant 6
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   64     do Output.create(42,0,0,0,51,30,63,30,51,0,0,0);     // *
+push constant 42
+push constant 0
+push constant 0
+push constant 0
+push constant 51
+push constant 30
+push constant 63
+push constant 30
+push constant 51
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   65     do Output.create(43,0,0,0,12,12,63,12,12,0,0,0);     // +
+push constant 43
+push constant 0
+push constant 0
+push constant 0
+push constant 12
+push constant 12
+push constant 63
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   66     do Output.create(44,0,0,0,0,0,0,0,12,12,6,0);        // ,
+push constant 44
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 12
+push constant 12
+push constant 6
+push constant 0
+call Output.create 12
+pop temp 0
+//   67     do Output.create(45,0,0,0,0,0,63,0,0,0,0,0);         // -
+push constant 45
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 63
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   68     do Output.create(46,0,0,0,0,0,0,0,12,12,0,0);        // .
+push constant 46
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   69     do Output.create(47,0,0,32,48,24,12,6,3,1,0,0);      // /
+push constant 47
+push constant 0
+push constant 0
+push constant 32
+push constant 48
+push constant 24
+push constant 12
+push constant 6
+push constant 3
+push constant 1
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   71     do Output.create(48,12,30,51,51,51,51,51,30,12,0,0); // 0
+push constant 48
+push constant 12
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 12
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   72     do Output.create(49,12,14,15,12,12,12,12,12,63,0,0); // 1
+push constant 49
+push constant 12
+push constant 14
+push constant 15
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 63
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   73     do Output.create(50,30,51,48,24,12,6,3,51,63,0,0);   // 2
+push constant 50
+push constant 30
+push constant 51
+push constant 48
+push constant 24
+push constant 12
+push constant 6
+push constant 3
+push constant 51
+push constant 63
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   74     do Output.create(51,30,51,48,48,28,48,48,51,30,0,0); // 3
+push constant 51
+push constant 30
+push constant 51
+push constant 48
+push constant 48
+push constant 28
+push constant 48
+push constant 48
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   75     do Output.create(52,16,24,28,26,25,63,24,24,60,0,0); // 4
+push constant 52
+push constant 16
+push constant 24
+push constant 28
+push constant 26
+push constant 25
+push constant 63
+push constant 24
+push constant 24
+push constant 60
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   76     do Output.create(53,63,3,3,31,48,48,48,51,30,0,0);   // 5
+push constant 53
+push constant 63
+push constant 3
+push constant 3
+push constant 31
+push constant 48
+push constant 48
+push constant 48
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   77     do Output.create(54,28,6,3,3,31,51,51,51,30,0,0);    // 6
+push constant 54
+push constant 28
+push constant 6
+push constant 3
+push constant 3
+push constant 31
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   78     do Output.create(55,63,49,48,48,24,12,12,12,12,0,0); // 7
+push constant 55
+push constant 63
+push constant 49
+push constant 48
+push constant 48
+push constant 24
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   79     do Output.create(56,30,51,51,51,30,51,51,51,30,0,0); // 8
+push constant 56
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   80     do Output.create(57,30,51,51,51,62,48,48,24,14,0,0); // 9
+push constant 57
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 62
+push constant 48
+push constant 48
+push constant 24
+push constant 14
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   82     do Output.create(58,0,0,12,12,0,0,12,12,0,0,0);      // :
+push constant 58
+push constant 0
+push constant 0
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   83     do Output.create(59,0,0,12,12,0,0,12,12,6,0,0);      // ;
+push constant 59
+push constant 0
+push constant 0
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+push constant 12
+push constant 12
+push constant 6
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   84     do Output.create(60,0,0,24,12,6,3,6,12,24,0,0);      // <
+push constant 60
+push constant 0
+push constant 0
+push constant 24
+push constant 12
+push constant 6
+push constant 3
+push constant 6
+push constant 12
+push constant 24
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   85     do Output.create(61,0,0,0,63,0,0,63,0,0,0,0);        // =
+push constant 61
+push constant 0
+push constant 0
+push constant 0
+push constant 63
+push constant 0
+push constant 0
+push constant 63
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   86     do Output.create(62,0,0,3,6,12,24,12,6,3,0,0);       // >
+push constant 62
+push constant 0
+push constant 0
+push constant 3
+push constant 6
+push constant 12
+push constant 24
+push constant 12
+push constant 6
+push constant 3
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   87     do Output.create(64,30,51,51,59,59,59,27,3,30,0,0);  // @
+push constant 64
+push constant 30
+push constant 51
+push constant 51
+push constant 59
+push constant 59
+push constant 59
+push constant 27
+push constant 3
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   88     do Output.create(63,30,51,51,24,12,12,0,12,12,0,0);  // ?
+push constant 63
+push constant 30
+push constant 51
+push constant 51
+push constant 24
+push constant 12
+push constant 12
+push constant 0
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   90     do Output.create(65,12,30,51,51,63,51,51,51,51,0,0); // A
+push constant 65
+push constant 12
+push constant 30
+push constant 51
+push constant 51
+push constant 63
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   91     do Output.create(66,31,51,51,51,31,51,51,51,31,0,0); // B
+push constant 66
+push constant 31
+push constant 51
+push constant 51
+push constant 51
+push constant 31
+push constant 51
+push constant 51
+push constant 51
+push constant 31
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   92     do Output.create(67,28,54,35,3,3,3,35,54,28,0,0);    // C
+push constant 67
+push constant 28
+push constant 54
+push constant 35
+push constant 3
+push constant 3
+push constant 3
+push constant 35
+push constant 54
+push constant 28
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   93     do Output.create(68,15,27,51,51,51,51,51,27,15,0,0); // D
+push constant 68
+push constant 15
+push constant 27
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 27
+push constant 15
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   94     do Output.create(69,63,51,35,11,15,11,35,51,63,0,0); // E
+push constant 69
+push constant 63
+push constant 51
+push constant 35
+push constant 11
+push constant 15
+push constant 11
+push constant 35
+push constant 51
+push constant 63
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   95     do Output.create(70,63,51,35,11,15,11,3,3,3,0,0);    // F
+push constant 70
+push constant 63
+push constant 51
+push constant 35
+push constant 11
+push constant 15
+push constant 11
+push constant 3
+push constant 3
+push constant 3
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   96     do Output.create(71,28,54,35,3,59,51,51,54,44,0,0);  // G
+push constant 71
+push constant 28
+push constant 54
+push constant 35
+push constant 3
+push constant 59
+push constant 51
+push constant 51
+push constant 54
+push constant 44
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   97     do Output.create(72,51,51,51,51,63,51,51,51,51,0,0); // H
+push constant 72
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 63
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   98     do Output.create(73,30,12,12,12,12,12,12,12,30,0,0); // I
+push constant 73
+push constant 30
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//   99     do Output.create(74,60,24,24,24,24,24,27,27,14,0,0); // J
+push constant 74
+push constant 60
+push constant 24
+push constant 24
+push constant 24
+push constant 24
+push constant 24
+push constant 27
+push constant 27
+push constant 14
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  100     do Output.create(75,51,51,51,27,15,27,51,51,51,0,0); // K
+push constant 75
+push constant 51
+push constant 51
+push constant 51
+push constant 27
+push constant 15
+push constant 27
+push constant 51
+push constant 51
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  101     do Output.create(76,3,3,3,3,3,3,35,51,63,0,0);       // L
+push constant 76
+push constant 3
+push constant 3
+push constant 3
+push constant 3
+push constant 3
+push constant 3
+push constant 35
+push constant 51
+push constant 63
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  102     do Output.create(77,33,51,63,63,51,51,51,51,51,0,0); // M
+push constant 77
+push constant 33
+push constant 51
+push constant 63
+push constant 63
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  103     do Output.create(78,51,51,55,55,63,59,59,51,51,0,0); // N
+push constant 78
+push constant 51
+push constant 51
+push constant 55
+push constant 55
+push constant 63
+push constant 59
+push constant 59
+push constant 51
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  104     do Output.create(79,30,51,51,51,51,51,51,51,30,0,0); // O
+push constant 79
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  105     do Output.create(80,31,51,51,51,31,3,3,3,3,0,0);     // P
+push constant 80
+push constant 31
+push constant 51
+push constant 51
+push constant 51
+push constant 31
+push constant 3
+push constant 3
+push constant 3
+push constant 3
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  106     do Output.create(81,30,51,51,51,51,51,63,59,30,48,0);// Q
+push constant 81
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 63
+push constant 59
+push constant 30
+push constant 48
+push constant 0
+call Output.create 12
+pop temp 0
+//  107     do Output.create(82,31,51,51,51,31,27,51,51,51,0,0); // R
+push constant 82
+push constant 31
+push constant 51
+push constant 51
+push constant 51
+push constant 31
+push constant 27
+push constant 51
+push constant 51
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  108     do Output.create(83,30,51,51,6,28,48,51,51,30,0,0);  // S
+push constant 83
+push constant 30
+push constant 51
+push constant 51
+push constant 6
+push constant 28
+push constant 48
+push constant 51
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  109     do Output.create(84,63,63,45,12,12,12,12,12,30,0,0); // T
+push constant 84
+push constant 63
+push constant 63
+push constant 45
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  110     do Output.create(85,51,51,51,51,51,51,51,51,30,0,0); // U
+push constant 85
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  111     do Output.create(86,51,51,51,51,51,30,30,12,12,0,0); // V
+push constant 86
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 30
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  112     do Output.create(87,51,51,51,51,51,63,63,63,18,0,0); // W
+push constant 87
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 63
+push constant 63
+push constant 63
+push constant 18
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  113     do Output.create(88,51,51,30,30,12,30,30,51,51,0,0); // X
+push constant 88
+push constant 51
+push constant 51
+push constant 30
+push constant 30
+push constant 12
+push constant 30
+push constant 30
+push constant 51
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  114     do Output.create(89,51,51,51,51,30,12,12,12,30,0,0); // Y
+push constant 89
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 12
+push constant 12
+push constant 12
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  115     do Output.create(90,63,51,49,24,12,6,35,51,63,0,0);  // Z
+push constant 90
+push constant 63
+push constant 51
+push constant 49
+push constant 24
+push constant 12
+push constant 6
+push constant 35
+push constant 51
+push constant 63
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  117     do Output.create(91,30,6,6,6,6,6,6,6,30,0,0);          // [
+push constant 91
+push constant 30
+push constant 6
+push constant 6
+push constant 6
+push constant 6
+push constant 6
+push constant 6
+push constant 6
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  118     do Output.create(92,0,0,1,3,6,12,24,48,32,0,0);        // \
+push constant 92
+push constant 0
+push constant 0
+push constant 1
+push constant 3
+push constant 6
+push constant 12
+push constant 24
+push constant 48
+push constant 32
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  119     do Output.create(93,30,24,24,24,24,24,24,24,30,0,0);   // ]
+push constant 93
+push constant 30
+push constant 24
+push constant 24
+push constant 24
+push constant 24
+push constant 24
+push constant 24
+push constant 24
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  120     do Output.create(94,8,28,54,0,0,0,0,0,0,0,0);          // ^
+push constant 94
+push constant 8
+push constant 28
+push constant 54
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  121     do Output.create(95,0,0,0,0,0,0,0,0,0,63,0);           // _
+push constant 95
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 63
+push constant 0
+call Output.create 12
+pop temp 0
+//  122     do Output.create(96,6,12,24,0,0,0,0,0,0,0,0);          // `
+push constant 96
+push constant 6
+push constant 12
+push constant 24
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  124     do Output.create(97,0,0,0,14,24,30,27,27,54,0,0);      // a
+push constant 97
+push constant 0
+push constant 0
+push constant 0
+push constant 14
+push constant 24
+push constant 30
+push constant 27
+push constant 27
+push constant 54
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  125     do Output.create(98,3,3,3,15,27,51,51,51,30,0,0);      // b
+push constant 98
+push constant 3
+push constant 3
+push constant 3
+push constant 15
+push constant 27
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  126     do Output.create(99,0,0,0,30,51,3,3,51,30,0,0);        // c
+push constant 99
+push constant 0
+push constant 0
+push constant 0
+push constant 30
+push constant 51
+push constant 3
+push constant 3
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  127     do Output.create(100,48,48,48,60,54,51,51,51,30,0,0);  // d
+push constant 100
+push constant 48
+push constant 48
+push constant 48
+push constant 60
+push constant 54
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  128     do Output.create(101,0,0,0,30,51,63,3,51,30,0,0);      // e
+push constant 101
+push constant 0
+push constant 0
+push constant 0
+push constant 30
+push constant 51
+push constant 63
+push constant 3
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  129     do Output.create(102,28,54,38,6,15,6,6,6,15,0,0);      // f
+push constant 102
+push constant 28
+push constant 54
+push constant 38
+push constant 6
+push constant 15
+push constant 6
+push constant 6
+push constant 6
+push constant 15
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  130     do Output.create(103,0,0,30,51,51,51,62,48,51,30,0);   // g
+push constant 103
+push constant 0
+push constant 0
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 62
+push constant 48
+push constant 51
+push constant 30
+push constant 0
+call Output.create 12
+pop temp 0
+//  131     do Output.create(104,3,3,3,27,55,51,51,51,51,0,0);     // h
+push constant 104
+push constant 3
+push constant 3
+push constant 3
+push constant 27
+push constant 55
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  132     do Output.create(105,12,12,0,14,12,12,12,12,30,0,0);   // i
+push constant 105
+push constant 12
+push constant 12
+push constant 0
+push constant 14
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  133     do Output.create(106,48,48,0,56,48,48,48,48,51,30,0);  // j
+push constant 106
+push constant 48
+push constant 48
+push constant 0
+push constant 56
+push constant 48
+push constant 48
+push constant 48
+push constant 48
+push constant 51
+push constant 30
+push constant 0
+call Output.create 12
+pop temp 0
+//  134     do Output.create(107,3,3,3,51,27,15,15,27,51,0,0);     // k
+push constant 107
+push constant 3
+push constant 3
+push constant 3
+push constant 51
+push constant 27
+push constant 15
+push constant 15
+push constant 27
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  135     do Output.create(108,14,12,12,12,12,12,12,12,30,0,0);  // l
+push constant 108
+push constant 14
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  136     do Output.create(109,0,0,0,29,63,43,43,43,43,0,0);     // m
+push constant 109
+push constant 0
+push constant 0
+push constant 0
+push constant 29
+push constant 63
+push constant 43
+push constant 43
+push constant 43
+push constant 43
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  137     do Output.create(110,0,0,0,29,51,51,51,51,51,0,0);     // n
+push constant 110
+push constant 0
+push constant 0
+push constant 0
+push constant 29
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  138     do Output.create(111,0,0,0,30,51,51,51,51,30,0,0);     // o
+push constant 111
+push constant 0
+push constant 0
+push constant 0
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  139     do Output.create(112,0,0,0,30,51,51,51,31,3,3,0);      // p
+push constant 112
+push constant 0
+push constant 0
+push constant 0
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 31
+push constant 3
+push constant 3
+push constant 0
+call Output.create 12
+pop temp 0
+//  140     do Output.create(113,0,0,0,30,51,51,51,62,48,48,0);    // q
+push constant 113
+push constant 0
+push constant 0
+push constant 0
+push constant 30
+push constant 51
+push constant 51
+push constant 51
+push constant 62
+push constant 48
+push constant 48
+push constant 0
+call Output.create 12
+pop temp 0
+//  141     do Output.create(114,0,0,0,29,55,51,3,3,7,0,0);        // r
+push constant 114
+push constant 0
+push constant 0
+push constant 0
+push constant 29
+push constant 55
+push constant 51
+push constant 3
+push constant 3
+push constant 7
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  142     do Output.create(115,0,0,0,30,51,6,24,51,30,0,0);      // s
+push constant 115
+push constant 0
+push constant 0
+push constant 0
+push constant 30
+push constant 51
+push constant 6
+push constant 24
+push constant 51
+push constant 30
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  143     do Output.create(116,4,6,6,15,6,6,6,54,28,0,0);        // t
+push constant 116
+push constant 4
+push constant 6
+push constant 6
+push constant 15
+push constant 6
+push constant 6
+push constant 6
+push constant 54
+push constant 28
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  144     do Output.create(117,0,0,0,27,27,27,27,27,54,0,0);     // u
+push constant 117
+push constant 0
+push constant 0
+push constant 0
+push constant 27
+push constant 27
+push constant 27
+push constant 27
+push constant 27
+push constant 54
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  145     do Output.create(118,0,0,0,51,51,51,51,30,12,0,0);     // v
+push constant 118
+push constant 0
+push constant 0
+push constant 0
+push constant 51
+push constant 51
+push constant 51
+push constant 51
+push constant 30
+push constant 12
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  146     do Output.create(119,0,0,0,51,51,51,63,63,18,0,0);     // w
+push constant 119
+push constant 0
+push constant 0
+push constant 0
+push constant 51
+push constant 51
+push constant 51
+push constant 63
+push constant 63
+push constant 18
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  147     do Output.create(120,0,0,0,51,30,12,12,30,51,0,0);     // x
+push constant 120
+push constant 0
+push constant 0
+push constant 0
+push constant 51
+push constant 30
+push constant 12
+push constant 12
+push constant 30
+push constant 51
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  148     do Output.create(121,0,0,0,51,51,51,62,48,24,15,0);    // y
+push constant 121
+push constant 0
+push constant 0
+push constant 0
+push constant 51
+push constant 51
+push constant 51
+push constant 62
+push constant 48
+push constant 24
+push constant 15
+push constant 0
+call Output.create 12
+pop temp 0
+//  149     do Output.create(122,0,0,0,63,27,12,6,51,63,0,0);      // z
+push constant 122
+push constant 0
+push constant 0
+push constant 0
+push constant 63
+push constant 27
+push constant 12
+push constant 6
+push constant 51
+push constant 63
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  151     do Output.create(123,56,12,12,12,7,12,12,12,56,0,0);   // {
+push constant 123
+push constant 56
+push constant 12
+push constant 12
+push constant 12
+push constant 7
+push constant 12
+push constant 12
+push constant 12
+push constant 56
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  152     do Output.create(124,12,12,12,12,12,12,12,12,12,0,0);  // |
+push constant 124
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 12
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  153     do Output.create(125,7,12,12,12,56,12,12,12,7,0,0);    // }
+push constant 125
+push constant 7
+push constant 12
+push constant 12
+push constant 12
+push constant 56
+push constant 12
+push constant 12
+push constant 12
+push constant 7
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  154     do Output.create(126,38,45,25,0,0,0,0,0,0,0,0);        // ~
+push constant 126
+push constant 38
+push constant 45
+push constant 25
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+push constant 0
+call Output.create 12
+pop temp 0
+//  156 	  return;
+push constant 0
+return
+// #########################################################
+// function void create
+function Output.create 1
+// ## LOCAL         0 map          Array   
+// ## ARGUMENT      0 index        int     
+// ## ARGUMENT      1 a            int     
+// ## ARGUMENT      2 b            int     
+// ## ARGUMENT      3 c            int     
+// ## ARGUMENT      4 d            int     
+// ## ARGUMENT      5 e            int     
+// ## ARGUMENT      6 f            int     
+// ## ARGUMENT      7 g            int     
+// ## ARGUMENT      8 h            int     
+// ## ARGUMENT      9 i            int     
+// ## ARGUMENT     10 j            int     
+// ## ARGUMENT     11 k            int     
+//  164 	  let map = Array.new(11);
+push constant 11
+call Array.new 1
+pop local 0
+//  165     let charMaps[index] = map;
+push argument 0
+push static 0
+add
+push local 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  167     let map[0] = a;
+push constant 0
+push local 0
+add
+push argument 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  168     let map[1] = b;
+push constant 1
+push local 0
+add
+push argument 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  169     let map[2] = c;
+push constant 2
+push local 0
+add
+push argument 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  170     let map[3] = d;
+push constant 3
+push local 0
+add
+push argument 4
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  171     let map[4] = e;
+push constant 4
+push local 0
+add
+push argument 5
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  172     let map[5] = f;
+push constant 5
+push local 0
+add
+push argument 6
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  173     let map[6] = g;
+push constant 6
+push local 0
+add
+push argument 7
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  174     let map[7] = h;
+push constant 7
+push local 0
+add
+push argument 8
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  175     let map[8] = i;
+push constant 8
+push local 0
+add
+push argument 9
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  176     let map[9] = j;
+push constant 9
+push local 0
+add
+push argument 10
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  177     let map[10] = k;
+push constant 10
+push local 0
+add
+push argument 11
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  179     return;
+push constant 0
+return
+// #########################################################
+// function Array getMap
+function Output.getMap 0
+// ## ARGUMENT      0 c            char    
+//  185     if ((c < 32) | (c > 126)) {
+push argument 0
+push constant 32
+lt
+push argument 0
+push constant 126
+gt
+or
+not
+if-goto I-ELS0
+//  186       let c = 0;
+push constant 0
+pop argument 0
+goto I-END0
+label I-ELS0
+label I-END0
+//  188     return charMaps[c];
+push argument 0
+push static 0
+add
+pop pointer 1
+push that 0
+return
+// #########################################################
+// function void moveCursor
+function Output.moveCursor 0
+// ## ARGUMENT      0 i            int     
+// ## ARGUMENT      1 j            int     
+//  194     if ((i < 0) | (i > 22) | (j < 0) | (j > 63)) {
+push argument 0
+push constant 0
+lt
+push argument 0
+push constant 22
+gt
+or
+push argument 1
+push constant 0
+lt
+or
+push argument 1
+push constant 63
+gt
+or
+not
+if-goto I-ELS0
+//  195       do Sys.error(20);             // illegal coordinates
+push constant 20
+call Sys.error 1
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//  197     let cursor_x = j;               // position the cursor
+push argument 1
+pop static 1
+//  198     let cursor_y = i;
+push argument 0
+pop static 2
+//  199     do Output.printChar(32);        // print a blank
+push constant 32
+call Output.printChar 1
+pop temp 0
+//  200     let cursor_x = j;               // reposition the cursor
+push argument 1
+pop static 1
+//  201     let cursor_y = i;
+push argument 0
+pop static 2
+//  202     return;
+push constant 0
+return
+// #########################################################
+// function void printChar
+function Output.printChar 5
+// ## LOCAL         0 map          Array   
+// ## LOCAL         1 address      int     
+// ## LOCAL         2 mask         int     
+// ## LOCAL         3 bitmap       int     
+// ## LOCAL         4 i            int     
+// ## ARGUMENT      0 c            char    
+//  214     let map = Output.getMap(c);     // get character pixel bitmap
+push argument 0
+call Output.getMap 1
+pop local 0
+//  215     let address = (cursor_y*32*11) + (cursor_x/2);
+push static 2
+push constant 32
+call Math.multiply 2
+push constant 11
+call Math.multiply 2
+push static 1
+push constant 2
+call Math.divide 2
+add
+pop local 1
+//  216     let mask = cursor_x & 1;        // 0 = left, 1 = right
+push static 1
+push constant 1
+and
+pop local 2
+//  218     let i = 0;
+push constant 0
+pop local 4
+//  219     while (i < 11) {                // loop over the height of the char
+label W-EXP0
+push local 4
+push constant 11
+lt
+not
+if-goto W-END0
+//  220       let bitmap = map[i];
+push local 4
+push local 0
+add
+pop pointer 1
+push that 0
+pop local 3
+//  221       if (mask = 1) {
+push local 2
+push constant 1
+eq
+not
+if-goto I-ELS0
+//  222         let bitmap = bitmap * 256;  // move to upper half
+push local 3
+push constant 256
+call Math.multiply 2
+pop local 3
+goto I-END0
+label I-ELS0
+label I-END0
+//  224       let screen[address] = screen[address] & charMasks[1 - mask] | bitmap;
+push local 1
+push static 3
+add
+push local 1
+push static 3
+add
+pop pointer 1
+push that 0
+push constant 1
+push local 2
+sub
+push static 4
+add
+pop pointer 1
+push that 0
+and
+push local 3
+or
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+//  226       let address = address + 32;
+push local 1
+push constant 32
+add
+pop local 1
+//  227       let i = i + 1;
+push local 4
+push constant 1
+add
+pop local 4
+goto W-EXP0
+label W-END0
+//  230     if (cursor_x = 63) {
+push static 1
+push constant 63
+eq
+not
+if-goto I-ELS1
+//  231       do Output.println();
+call Output.println 0
+pop temp 0
+goto I-END1
+label I-ELS1
+//  234       let cursor_x = cursor_x + 1;
+push static 1
+push constant 1
+add
+pop static 1
+label I-END1
+//  236     return;
+push constant 0
+return
+// #########################################################
+// function void printString
+function Output.printString 3
+// ## LOCAL         0 i            int     
+// ## LOCAL         1 l            int     
+// ## LOCAL         2 c            char    
+// ## ARGUMENT      0 s            String  
+//  245     let l = s.length();
+push argument 0
+call String.length 1
+pop local 1
+//  246     let i = 0;
+push constant 0
+pop local 0
+//  247     if (l > 0) {
+push local 1
+push constant 0
+gt
+not
+if-goto I-ELS0
+//  248       while (i < l) {
+label W-EXP0
+push local 0
+push local 1
+lt
+not
+if-goto W-END0
+//  249         let c = s.charAt(i);
+push argument 0
+push local 0
+call String.charAt 2
+pop local 2
+//  250         do Output.printChar(c);
+push local 2
+call Output.printChar 1
+pop temp 0
+//  251         let i = i + 1;
+push local 0
+push constant 1
+add
+pop local 0
+goto W-EXP0
+label W-END0
+goto I-END0
+label I-ELS0
+label I-END0
+//  254     return;
+push constant 0
+return
+// #########################################################
+// function void printDropString
+function Output.printDropString 0
+// ## ARGUMENT      0 s            String  
+//  259     do Output.printString(s);
+push argument 0
+call Output.printString 1
+pop temp 0
+//  260     do s.dispose();
+push argument 0
+call String.dispose 1
+pop temp 0
+//  261     return;
+push constant 0
+return
+// #########################################################
+// function void printInt
+function Output.printInt 1
+// ## LOCAL         0 s            String  
+// ## ARGUMENT      0 i            int     
+//  268     let s = String.new(10);
+push constant 10
+call String.new 1
+pop local 0
+//  269     do s.setInt(i);
+push local 0
+push argument 0
+call String.setInt 2
+pop temp 0
+//  270     do Output.printString(s);
+push local 0
+call Output.printString 1
+pop temp 0
+//  271     do s.dispose();
+push local 0
+call String.dispose 1
+pop temp 0
+//  272     return;
+push constant 0
+return
+// #########################################################
+// function void println
+function Output.println 0
+//  277     let cursor_x = 0;
+push constant 0
+pop static 1
+//  278     if (cursor_y < 22) {
+push static 2
+push constant 22
+lt
+not
+if-goto I-ELS0
+//  279       let cursor_y = cursor_y + 1;
+push static 2
+push constant 1
+add
+pop static 2
+goto I-END0
+label I-ELS0
+//  282       let cursor_y = 0;             // wrap it
+push constant 0
+pop static 2
+label I-END0
+//  284     return;
+push constant 0
+return
+// #########################################################
+// function void backSpace
+function Output.backSpace 0
+//  289     if (cursor_x > 0) {
+push static 1
+push constant 0
+gt
+not
+if-goto I-ELS0
+//  290       let cursor_x = cursor_x - 1;
+push static 1
+push constant 1
+sub
+pop static 1
+goto I-END0
+label I-ELS0
+label I-END0
+//  292     return;
+push constant 0
+return

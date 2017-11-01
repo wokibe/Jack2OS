@@ -1,0 +1,181 @@
+// adapted for Jack2c
+// from "The Elements of Computing Systems" by Nisan and Schocken, MIT Press
+// kittekat Oct/2017
+
+/**
+ * The String type.
+ */
+class String {
+    field Array string;
+    field int maxSize, index;
+
+    /** Constructs a new empty String with a maximum length of
+     *  maxLength. */
+    constructor String new(int maxLength) {
+      if (maxLength < 0) {
+        do Sys.error(14);              // Maximum length must be non-negative
+      }
+      let maxSize = maxLength;
+      if (maxLength = 0) {
+        let maxLength = 1;             // allow maxLength = 0, but create with 1
+      }
+      let string = Array.new(maxLength);
+      let index = 0;
+      return this;
+    }
+
+    /** De-allocates the string and frees its space. */
+    method void dispose() {
+      do string.dispose();
+      do Memory.deAlloc(this);
+      return;
+    }
+
+    /** Returns the current length of this String. */
+    method int length() {
+      return index;
+    }
+
+    /** Returns the character at location j. */
+    method char charAt(int j) {
+      if ((j < 0) | (~(j < index))) {
+        do Sys.error(15);          // index out of bounds
+      }
+      return string[j];
+    }
+
+    /** Sets the j'th character of this string to be c. */
+    method void setCharAt(int j, char c) {
+      if ((j < 0) | (~(j < index))) {
+        do Sys.error(16);          // index out of bounds
+      }
+      let string[j] = c;
+      return;
+    }
+
+    /** Appends the character c to the end of this String.
+     *  Returns this string as the return value. */
+    method void appendChar(char c) {
+      if (index < maxSize) {
+        let string[index] = c;
+        let index = index + 1;
+      }
+      else {
+        do Sys.error(17);          //  string is full
+      }
+      return this;
+    }
+
+    /** Erases the last character from this String. */
+    method void eraseLastChar() {
+      if (index = 0) {
+        do Sys.error(18);          // string is empty
+      }
+      let index = index - 1;
+      return;
+    }
+
+    /** Returns the integer value of this String until the first non
+     *  numeric character. */
+    method int intValue() {
+      var int val, len, i, nxt;
+      var boolean neg;
+
+      let val = 0;                // accumlator
+      let neg = false;            // minus flag
+      let len = length();
+      if (len = 0) {
+        return 0;
+      }
+      let i = 0;
+
+      let nxt = charAt(i);   // get first character
+      if (nxt = 45) {             // minus sign
+        let neg = true;
+        let i = i + 1;
+        let nxt = charAt(i); // get next character
+      }
+
+      while (Util.isNumeric(nxt) = true) {
+        let val = (val * 10) + (nxt - 48);
+        let i = i + 1;
+        if (i = len) {            // end of string
+          let nxt = 0;            // stop the while loop
+        }
+        else {
+          let nxt = charAt(i); // get next character
+        }
+      }
+
+      if (neg) {
+        let val = -val;
+      }
+      return val;
+    }
+
+    /** Sets this String to hold a representation of the given
+     *  number. */
+    method void setInt(int number) {
+      var Array help;                    // intermediate storage
+      var int i, n, m;
+      var boolean neg;
+
+      // the Figure 12.4 proposes a recursive algorithm
+      // the method used here seems to be faster (not measured)
+      let help = Array.new(6);           // -32767
+      let neg = false;
+      let i = 0;
+
+      if (number < 0) {                      // take care of a negative number
+        let neg = true;
+        let number = -number;
+      }
+
+      while (number > 0) {
+        let n = Math.divide(number, 10);  // right hand digit
+        let m = number - (n * 10);        // modulo
+        let help[i] = m + 48;             // save to char converted digit
+        let i = i + 1;
+        let number = n;
+      }
+      if (neg) {
+        let help[i] = 45;                 // minus sign
+        let i = i + 1;
+      }
+
+      let index = 0;                      // clear the string
+      if (i > maxSize) {                  // check available string space
+        do Sys.error(19);                 // insufficient string capacity
+      }
+
+/*
+      let i = i - 1;                      // revert help to string
+      while (~(i < 0)) {
+        do appendChar(help[i]);
+        let i = i - 1;
+      }
+*/
+      while (i > 0) {                     // revert help to string
+        let i = i - 1;
+        do appendChar(help[i]);
+      }
+
+      do help.dispose();                  // get rid of intermediate string
+      return;
+    }
+
+    /** Returns the new line character. */
+    function char newLine() {
+      return 128;
+    }
+
+    /** Returns the backspace character. */
+    function char backSpace() {
+      return 129;
+    }
+
+    /** Returns the double quote (") character. */
+    function char doubleQuote() {
+      return 34;
+    }
+}

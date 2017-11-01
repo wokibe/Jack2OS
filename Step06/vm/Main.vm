@@ -1,0 +1,230 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step06/./vm/Main.vm generated at 2017-10-29 19:04
+// class Main
+// #########################################################
+// function void main
+function Main.main 2
+// ## LOCAL         0 before       int     
+// ## LOCAL         1 after        int     
+//   13     let before = Memory.getFreeListAddr();
+// remote function call
+call Memory.getFreeListAddr 0
+pop local 0
+//   15     do Screen.drawLine(0,220,511,220);        // base line
+// remote function call
+push constant 0
+push constant 220
+push constant 511
+push constant 220
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   16     do Screen.drawRectangle(280,90,410,220);  // house
+// remote function call
+push constant 280
+push constant 90
+push constant 410
+push constant 220
+call Screen.drawRectangle 4
+// discard the void return
+pop temp 0
+//   18     do Screen.setColor(false);
+// remote function call
+push constant 0
+call Screen.setColor 1
+// discard the void return
+pop temp 0
+//   19     do Screen.drawRectangle(350,120,390,219); // door
+// remote function call
+push constant 350
+push constant 120
+push constant 390
+push constant 219
+call Screen.drawRectangle 4
+// discard the void return
+pop temp 0
+//   20     do Screen.drawRectangle(292,120,332,150); // window
+// remote function call
+push constant 292
+push constant 120
+push constant 332
+push constant 150
+call Screen.drawRectangle 4
+// discard the void return
+pop temp 0
+//   22     do Screen.setColor(true);
+// remote function call
+push constant 1
+neg
+call Screen.setColor 1
+// discard the void return
+pop temp 0
+//   23     do Screen.drawCircle(360,170,3);          // door handle
+// remote function call
+push constant 360
+push constant 170
+push constant 3
+call Screen.drawCircle 3
+// discard the void return
+pop temp 0
+//   24     do Screen.drawLine(280,90,345,35);        // roof
+// remote function call
+push constant 280
+push constant 90
+push constant 345
+push constant 35
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   25     do Screen.drawLine(345,35,410,90);        // roof
+// remote function call
+push constant 345
+push constant 35
+push constant 410
+push constant 90
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   27     do Screen.drawCircle(140,60,30);          // sun
+// remote function call
+push constant 140
+push constant 60
+push constant 30
+call Screen.drawCircle 3
+// discard the void return
+pop temp 0
+//   28     do Screen.drawLine(140,26, 140, 6);
+// remote function call
+push constant 140
+push constant 26
+push constant 140
+push constant 6
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   29     do Screen.drawLine(163,35,178,20);
+// remote function call
+push constant 163
+push constant 35
+push constant 178
+push constant 20
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   30     do Screen.drawLine(174,60,194,60);
+// remote function call
+push constant 174
+push constant 60
+push constant 194
+push constant 60
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   31     do Screen.drawLine(163,85,178,100);
+// remote function call
+push constant 163
+push constant 85
+push constant 178
+push constant 100
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   32     do Screen.drawLine(140,94,140,114);
+// remote function call
+push constant 140
+push constant 94
+push constant 140
+push constant 114
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   33     do Screen.drawLine(117,85,102,100);
+// remote function call
+push constant 117
+push constant 85
+push constant 102
+push constant 100
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   34     do Screen.drawLine(106,60,86,60);
+// remote function call
+push constant 106
+push constant 60
+push constant 86
+push constant 60
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   35     do Screen.drawLine(117,35,102,20);
+// remote function call
+push constant 117
+push constant 35
+push constant 102
+push constant 20
+call Screen.drawLine 4
+// discard the void return
+pop temp 0
+//   37     let after = Memory.getFreeListAddr();
+// remote function call
+call Memory.getFreeListAddr 0
+pop local 1
+//   38     if ((after - before) > 0) {
+push local 1
+push local 0
+sub
+push constant 0
+gt
+not
+if-goto I-ELS0
+//   39       do Output.printDropString("Memory leak: ");
+// remote function call
+push constant 13
+call String.new 1
+push constant 77
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 107
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printDropString 1
+// discard the void return
+pop temp 0
+//   40       do Output.printInt(after - before);
+// remote function call
+push local 1
+push local 0
+sub
+call Output.printInt 1
+// discard the void return
+pop temp 0
+//   41       do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+goto I-END0
+label I-ELS0
+label I-END0
+//   44     return;
+push constant 0
+return

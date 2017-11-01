@@ -1,0 +1,241 @@
+/// adapted for Jack2c
+// from "The Elements of Computing Systems" by Nisan and Schocken, MIT Press
+// kittekat Oct/2017
+
+/**
+ * Graphic screen library.
+ */
+class Screen {
+  static Array screen;
+  static boolean black;
+
+  const WIDTH       = 512;     // pixels per row
+  const HEIGHT      = 256;     // pixels per column
+  const BITS        = 16;      // bits per word
+  const ROW_SIZE    = 32;      // words per row (WIDTH / BITS)
+  const SCREEN_SIZE = 8192;    // ROW_SIZE * HEIGHT
+  const MAX_RADIUS  = 181;     // maximum circle radius
+
+  /** Initializes the Screen. */
+  function void init() {
+    let screen = 16384;
+    let black = true;
+    return;
+  }
+
+  /** Erases the whole screen. */
+  function void clearScreen() {
+    var int i;
+
+    while (i < SCREEN_SIZE) {
+      let screen[i] = 0;      // clear 16 bits at once
+      let i = i + 1;
+    }
+    return;
+  }
+
+  /** Sets the color to be used in further draw commands
+   *  where white = false, black = true. */
+  function void setColor(boolean b) {
+    let black = b;            // save the color in static variable
+    return;
+  }
+
+  /** Draws the (x, y) pixel. */
+  function void drawPixel(int x, int y) {     // row = y, col = x
+    var int word;
+    var int bit;
+
+    if (Screen.badCoord(x, y)) {
+      do Sys.error(7);                    // Illegal pixel coordinates
+    }
+
+    let word = (y * ROW_SIZE) + (x / BITS);
+    let bit = Util.bit(x - (x / BITS * BITS));    // bit[x - mod(x, BITS)]
+
+    if (black) {
+      let screen[word] = screen[word] | bit;    // set this bit
+    }
+    else {
+      let screen[word] = screen[word] & ~bit;   // clear this bit
+    }
+    return;
+  }
+
+  /** Draws a line from pixel (x1, y1) to (x2, y2). */
+  function void drawLine(int x1, int y1, int x2, int y2) {
+    var int dx, dy;
+    var int tmp;
+
+    if (Screen.badCoord(x1,y1) | Screen.badCoord(x2, y2)) {
+      do Sys.error(8);                // illegal line coordinates
+    }
+
+    // draw only from left to right
+    if (x1 > x2) {                    // swap (x1, y1) with (x2, y2)
+      let tmp = x1;
+      let x1 = x2;
+      let x2 = tmp;
+      let tmp = y1;
+      let y1 = y2;
+      let y2 = tmp;
+    }
+
+    let dx = x2 - x1;
+    let dy = y2 - y1;
+
+    if (dx = 0) {
+      do Screen.drawVert(x1, y1, y2);
+    }
+    else { if (dy = 0) {
+      do Screen.drawHorz(x1, x2, y1);
+    }
+    else {
+      do Screen.drawDiag(x1, y1, x2, y2, dx, dy);
+    }}
+    return;
+  }
+
+  // draw a diagonal line from (x1, y1) to (x2, y2)
+  function void drawDiag(int x1, int y1, int x2, int y2, int dx, int dy) {
+    var int a, b;
+    var int adyMinusbdx;
+    // var int x_step;
+    var int y_step;
+
+    let a = 0;
+    let b = 0;
+    let adyMinusbdx = 0;
+
+    // set increments
+    // let x_step = 1;
+    if (dy < 0) {                 // from (top, left) to (bottom, right)
+      let y_step = -1;
+    }
+    else {                        // from (bottom, left) to (top, right)
+      let y_step = 1;
+    }
+
+    while ( ~(a > dx) &                           // a in range
+            (((y_step = 1)  & ~(b > dy)) |        // b in range going down
+             ((y_step = -1) & ~(b < dy)))) {      // b in range going up
+      do Screen.drawPixel(x1 + a, y1 + b);
+      if (adyMinusbdx < 0) {
+        let a = a + 1;                            // a + x_step
+        let adyMinusbdx = adyMinusbdx + (dy * y_step);
+      }
+      else {
+        let b = b + y_step;
+        let adyMinusbdx = adyMinusbdx - dx;       // adyMinusbdx - (dx * x_step)
+      }
+    }
+    return;
+  }
+
+  // fast draw a horizontal line from (x1, y) to (x2, y)
+  // by splitting it into 3 parts (left, middle, right)
+  // the middle part can draw full words
+  function void drawHorz(int x1, int x2, int y) {
+    var int left_addr, right_addr;              // word limits of middle part
+    var int left_mod, right_mod;                // modulo of side parts
+
+    let left_mod  = x1 & 15;                    // fast modulo 16
+    let right_mod = x2 & 15;
+    let left_addr  = (y * ROW_SIZE) + (x1 / BITS);
+    let right_addr = (y * ROW_SIZE) + (x2 / BITS) + (right_mod = 0);  // adjust
+
+    if (left_addr = right_addr) {             // no middle part
+      do Screen.drawSlow(x1, x2, y);
+    }
+    else {
+      if (~(left_mod = 0)) {                  // left part
+        let left_addr = left_addr + 1;        // prepare for middle part
+        do Screen.drawSlow(x1, x1 + 16 - left_mod, y);
+      }
+      if (~(right_mod = 0)) {                 // right part
+        let right_addr = right_addr - 1;      // prepare for middle part
+        do Screen.drawSlow(x2 - right_mod, x2, y);
+      }
+      while (~(left_addr > right_addr)) {     // middle part
+        let screen[left_addr] = black;
+        let left_addr = left_addr + 1;
+      }
+    }
+    return;
+  }
+
+  // draw a horizontal line from (x1, y) to (x2, y) pixel by pixel
+  function void drawSlow(int x1, int x2, int y) {
+
+    while (~(x1 > x2)) {
+      do Screen.drawPixel(x1, y);
+      let x1 = x1 + 1;
+    }
+    return;
+  }
+
+  // draw a vertical line from (x, y1) to (x, y2)
+  function void drawVert(int x, in y1, int y2) {
+    var int tmp;
+
+    // draw only from top to bottom
+    if (y1 > y2) {                    // swap (x, y1) with (x, y2)
+      let tmp = y1;
+      let y1 = y2;
+      let y2 = tmp;
+    }
+
+    while (~(y1 > y2)) {
+      do Screen.drawPixel(x, y1);
+      let y1 = y1 + 1;
+    }
+    return;
+  }
+
+  /** Draws a filled rectangle where the top left corner
+   *  is (x1, y1) and the bottom right corner is (x2, y2). */
+  function void drawRectangle(int x1, int y1, int x2, int y2) {
+    var int y;
+
+    if (Screen.badCoord(x1,y1) | Screen.badCoord(x2, y2)) {
+      do Sys.error(9);                // illegal rectangle coordinates
+    }
+
+    let y = y1;
+    while (~(y > y2)) {
+      do Screen.drawHorz(x1, x2, y);
+      let y = y + 1;
+    }
+    return;
+  }
+
+  /** Draws a filled circle of radius r around (cx, cy). */
+  function void drawCircle(int cx, int cy, int r) {
+    var int dx, dy;
+    var int r2;
+
+    if (Screen.badCoord(cx, cy)) {
+      do Sys.error(12);                     // Illegal center coordinates
+    }
+    if (r > MAX_RADIUS) {                   // (r < MAXRADIUS)
+      do Sys.error(13);                     // illegal radius
+    }
+
+    let dy = -r;
+    let r2 = r * r;
+    while (~(dy > r)) {
+      let dx = Math.sqrt(r2 - (dy * dy));
+      do Screen.drawHorz(cx - dx, cx + dx, cy + dy);
+      let dy = dy + 1;
+    }
+    return;
+  }
+
+  // return true if (x, y) is not valid
+  function boolean badCoord(int x, int y) {
+    return ((x < 0)             |
+            (x > (WIDTH - 1))   |
+            (y < 0)             |
+            (y > (HEIGHT - 1)));
+  }
+}

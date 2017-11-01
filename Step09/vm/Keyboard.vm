@@ -1,0 +1,223 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step09/./vm/Keyboard.vm generated at 2017-10-31 06:07
+// class Keyboard
+// ## STATIC        0 keyboard     Array   
+// #########################################################
+// function void init
+function Keyboard.init 0
+//   13     let keyboard = 24576;
+push constant 24576
+pop static 0
+//   14     return;
+push constant 0
+return
+// #########################################################
+// function char keyPressed
+function Keyboard.keyPressed 0
+//   38     return keyboard[0];
+// calculate array index
+push constant 0
+// add base address
+push static 0
+add
+// read from array
+pop pointer 1
+push that 0
+return
+// #########################################################
+// function char readChar
+function Keyboard.readChar 1
+// ## LOCAL         0 key          char    
+//   49     do Output.printChar(95);                  // underscore as prompt
+// remote function call
+push constant 95
+call Output.printChar 1
+// discard the void return
+pop temp 0
+//   50     do Output.backSpace();
+// remote function call
+call Output.backSpace 0
+// discard the void return
+pop temp 0
+//   52     while (Keyboard.keyPressed() = 0) {}      // wait until something pressed
+label W-EXP0
+// remote function call
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+if-goto W-END0
+goto W-EXP0
+label W-END0
+//   53     let key = Keyboard.keyPressed();          // collect it
+// remote function call
+call Keyboard.keyPressed 0
+pop local 0
+//   55     while (~(Keyboard.keyPressed()=0)) {}     // wait until released
+label W-EXP1
+// remote function call
+call Keyboard.keyPressed 0
+push constant 0
+eq
+not
+not
+if-goto W-END1
+goto W-EXP1
+label W-END1
+//   56     if (Util.isPrintable(key)) {
+// remote function call
+push local 0
+call Util.isPrintable 1
+not
+if-goto I-ELS0
+//   57       do Output.printChar(key);               // echo it
+// remote function call
+push local 0
+call Output.printChar 1
+// discard the void return
+pop temp 0
+goto I-END0
+label I-ELS0
+//   59       if (key = String.newLine()) {
+push local 0
+// remote function call
+call String.newLine 0
+eq
+not
+if-goto I-ELS1
+//   60         do Output.printChar(32);              // erase the last underscore
+// remote function call
+push constant 32
+call Output.printChar 1
+// discard the void return
+pop temp 0
+//   61         do Output.println();
+// remote function call
+call Output.println 0
+// discard the void return
+pop temp 0
+goto I-END1
+label I-ELS1
+label I-END1
+label I-END0
+//   64     return key;
+push local 0
+return
+// #########################################################
+// function String readLine
+function Keyboard.readLine 2
+// ## LOCAL         0 line         String  
+// ## LOCAL         1 c            char    
+// ## ARGUMENT      0 message      String  
+//   76     do Output.printString(message);
+// remote function call
+push argument 0
+call Output.printString 1
+// discard the void return
+pop temp 0
+//   78     let line = String.new(64);              // String.new(MAX_LINE)
+// remote function call
+push constant 64
+call String.new 1
+pop local 0
+//   79     let c = Keyboard.readChar();
+// remote function call
+call Keyboard.readChar 0
+pop local 1
+//   80     while (~(c = String.newLine())) {
+label W-EXP0
+push local 1
+// remote function call
+call String.newLine 0
+eq
+not
+not
+if-goto W-END0
+//   81       if (c = String.backSpace()) {
+push local 1
+// remote function call
+call String.backSpace 0
+eq
+not
+if-goto I-ELS0
+//   82         if (line.length() > 0) {
+// remote method call
+// set arg 0 with remote object
+push local 0
+call String.length 1
+push constant 0
+gt
+not
+if-goto I-ELS1
+//   83           do line.eraseLastChar();
+// remote method call
+// set arg 0 with remote object
+push local 0
+call String.eraseLastChar 1
+// discard the void return
+pop temp 0
+//   84           do Output.printChar(32);          // erase the last underscore
+// remote function call
+push constant 32
+call Output.printChar 1
+// discard the void return
+pop temp 0
+//   85           do Output.backSpace();
+// remote function call
+call Output.backSpace 0
+// discard the void return
+pop temp 0
+//   86           do Output.backSpace();            // reposition cursor
+// remote function call
+call Output.backSpace 0
+// discard the void return
+pop temp 0
+goto I-END1
+label I-ELS1
+label I-END1
+goto I-END0
+label I-ELS0
+//   90         do line.appendChar(c);
+// remote method call
+// set arg 0 with remote object
+push local 0
+push local 1
+call String.appendChar 2
+// discard the void return
+pop temp 0
+label I-END0
+//   92     let c = Keyboard.readChar();
+// remote function call
+call Keyboard.readChar 0
+pop local 1
+goto W-EXP0
+label W-END0
+//   95     return line;
+push local 0
+return
+// #########################################################
+// function int readInt
+function Keyboard.readInt 2
+// ## LOCAL         0 line         String  
+// ## LOCAL         1 num          int     
+// ## ARGUMENT      0 message      String  
+//  107     let line = Keyboard.readLine(message);
+// remote function call
+push argument 0
+call Keyboard.readLine 1
+pop local 0
+//  108     let num = line.intValue();
+// remote method call
+// set arg 0 with remote object
+push local 0
+call String.intValue 1
+pop local 1
+//  109     do line.dispose();
+// remote method call
+// set arg 0 with remote object
+push local 0
+call String.dispose 1
+// discard the void return
+pop temp 0
+//  110     return num;
+push local 1
+return

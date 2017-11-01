@@ -1,0 +1,63 @@
+// /Users/kittekat/Documents/Jack2Kotlin/Jack2OS/Step02/./vm/Util.vm generated at 2017-10-22 15:33
+// class Util
+// ## CONSTANT      0 BS           int     
+// ## CONSTANT      1 NB           int     
+// ## CONSTANT     -1 NIL          int     
+// #########################################################
+// function int getFreeListSize
+function Util.getFreeListSize 2
+// ## LOCAL         0 nxt          int     
+// ## LOCAL         1 sum          int     
+//   25     let nxt = Memory.getFreeListAddr();
+// remote function call
+call Memory.getFreeListAddr 0
+pop local 0
+//   26     let sum = 0;
+push constant 0
+pop local 1
+//   28     let sum = sum + Memory.peek(nxt + BS);
+push local 1
+// remote function call
+push local 0
+push constant 0
+add
+call Memory.peek 1
+add
+pop local 1
+//   29     let nxt = Memory.peek(nxt + NB);
+// remote function call
+push local 0
+push constant 1
+add
+call Memory.peek 1
+pop local 0
+//   31     while (~(nxt = NIL)) {
+label W-EXP0
+push local 0
+push constant 1
+neg
+eq
+not
+not
+if-goto W-END0
+//   32       let sum = sum + Memory.peek(nxt + BS);        // BS
+push local 1
+// remote function call
+push local 0
+push constant 0
+add
+call Memory.peek 1
+add
+pop local 1
+//   33       let nxt = Memory.peek(nxt + NB);              // NB
+// remote function call
+push local 0
+push constant 1
+add
+call Memory.peek 1
+pop local 0
+goto W-EXP0
+label W-END0
+//   36     return sum;
+push local 1
+return
